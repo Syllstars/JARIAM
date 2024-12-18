@@ -3,12 +3,12 @@ const router = express.Router();
 const authenticate = require('../middleware/auth');
 
 // Route pour récupérer tous les utilisateurs
-router.get('/', authenticate, (req, res) => {
+router.get('/', (req, res) => {
   res.json({ users: [] });  // Placeholder
 });
 
 // Route pour créer un utilisateur
-router.post('/', authenticate, (req, res) => {
+router.post('/', (req, res) => {
   const { name, email } = req.body;
   if (!name || !email) {
     return res.status(400).json({ error: `Missing name or email` });
@@ -27,7 +27,7 @@ router.put('/:id', authenticate, async (req, res) => {
     const user = await User.findByPk(userId);
     if (!user) {
       return res.status(404).json({ error: `User not found` });
-    } 
+    }
 
   // Mise à jour des données utilisateur
   user.name = name || user.name;
