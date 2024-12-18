@@ -1,10 +1,24 @@
 const express = require('express');
 const router = express.Router();
+const { User } = require('../models');
 const authenticate = require('../middleware/auth');
 
 // Route pour récupérer tous les utilisateurs
 router.get('/', (req, res) => {
   res.json({ users: [] });  // Placeholder
+});
+
+// Route pour récupérer un utilisateur
+router.get('/:id', async (req, res, next) => {
+  try {
+      const user = await User.findByPk(req.params.id);
+      if (!user) {
+          throw new NotFoundError('User not found');
+      }
+      res.status(200).json(user);
+  } catch (err) {
+      next(err); // Pass the error to the error handler middleware
+  }
 });
 
 // Route pour créer un utilisateur
