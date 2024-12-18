@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
+const authenticate = require('../middleware/auth');
 
 // Route pour récupérer tous les utilisateurs
-router.get('/', (req, res) => {
+router.get('/', authenticate, (req, res) => {
   res.json({ users: [] });  // Placeholder
 });
 
 // Route pour créer un utilisateur
-router.post('/', (req, res) => {
+router.post('/', authenticate, (req, res) => {
   const { name, email } = req.body;
   if (!name || !email) {
     return res.status(400).json({ error: `Missing name or email` });
@@ -17,7 +18,7 @@ router.post('/', (req, res) => {
 });
 
 // PUT /users/:id - Update a user
-router.put('/:id', async (req, res) => {
+router.put('/:id', authenticate, async (req, res) => {
   try {
     const userId = req.params.id;
     const { name, email, password } = req.body;
@@ -42,7 +43,7 @@ router.put('/:id', async (req, res) => {
 
 
 // DELETE /users/:id - Delete a user
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', authenticate, async (req, res) => {
   try {
     const userId = req.params.id;
 
