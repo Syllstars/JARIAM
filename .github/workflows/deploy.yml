@@ -1,0 +1,46 @@
+name: Node.js Deployment
+
+on:
+  push:
+    branches:
+      - main  # Branche à partir de laquelle le déploiement est effectué
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout du code
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14' # Change la version si nécessaire
+          
+      # Installation des dépendances
+      - name : Install dependencies
+        run : npm install
+
+      #Configurer PostgreSQL (optionnel)
+      #- name: Set up PostgreSQL
+      #  uses: shivammathur/setup-postgresql-action@v2
+      #  with:
+      #    postgresql-version: '13'  # Vérifier que la version est celle utilisé en prod
+
+      # Executer des micration si necesssaire
+      - name : Run database migration
+        run: npm run migrate # Vérifier que la commande est bien présente dans le fichier package.json pour exécuter les migrations de base de données (utiliser Sequelize ou autre ORM)
+
+      # Lancer ton application
+      - name: Start the Application
+        run: npm start
+
+      # Déployer vers ton serveur (SSH)
+      #- name: Deploy to server
+      #  run: |
+      #    ssh -i ${{ secrets.SSH_PRIVATE_KEY }} user@your-server-ip "cd /path/to/app && git pull && npm install && pm2 restart app"
+      #  env:
+      #    SSH_PRIVATE_KEY: ${{ secret.SSH_PRIVATE_KEY }}
