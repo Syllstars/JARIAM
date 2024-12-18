@@ -1,0 +1,35 @@
+name: Node.js CI
+
+on:
+  push:
+    branches:
+      - develop
+      - feature/*
+  pull_request:
+    branches:
+      - develop
+      - feature/*
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      #Checkout du code
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses : actions:setup-node@v2
+        with:
+          node-version: '14' # Change la version si nécessaire
+
+      # Installation des dépendances
+      - name : Install dependencies
+        run : npm install
+
+      # lancer les test unitaires
+      - name: Run tests
+        run: npm test
+        env:
+          CI : true
