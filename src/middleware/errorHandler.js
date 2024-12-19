@@ -1,7 +1,13 @@
 // src/middleware/errorHandler.js
+const winston = require('winston');
+
 const errorHandler = (err, req, res, next) => {
     // Log the error stack for debugging purposes
-    console.error(err.stack);
+    winston.error(err.stack);
+
+    if (err.isJoi) { // If it's a validation error
+        return res.status(400).json({ message: err.details[0].message });
+    }
 
     // Handle different error types
     if (err.name === 'ValidationError') {
@@ -16,6 +22,9 @@ const errorHandler = (err, req, res, next) => {
     if (err.name === 'SequelizeValidationError') {
         return res.status(400).json({ message: 'Invalid data' });
     }
+
+    if (err.name === 'SequelizeDatabaseError') {
+        return res.status(500).json({ message: 'Database error')};
 
     // Generic error handler (Internal Server Error)
     return res.status(500).json({ message: 'Internal Server Error' });
