@@ -3,6 +3,8 @@ const express = require('express');
 const app = express();
 
 const errorHandler = require('./src/middleware/errorHandler');
+const hasRole = require('./src/middleware/hasRole');
+
 const port = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 
