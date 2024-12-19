@@ -6,11 +6,14 @@ const errorHandler = require('./src/middleware/errorHandler');
 const hasRole = require('./src/middleware/hasRole');
 
 const port = process.env.PORT || 3000;
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
+
+const cors = require('cors');
+const rateLimit = require('express-rate-limit');
 
 const authRoutes = require('./src/routes/auth');     // Chargement des routes définies dans src/routes/auth
-const userRoutes = require('./src/routes/users');     // Chargement des routes définies dans src/routes/users
-const homeRoutes = require('./src/routes/home');      // Chargement des routes définies dans scr/routes/home
+const userRoutes = require('./src/routes/users');    // Chargement des routes définies dans src/routes/users
+const homeRoutes = require('./src/routes/home');     // Chargement des routes définies dans scr/routes/home
 
 // Base de données (Sequelize)
 const sequelize = require('./src/db_setup');  // Ajouter l'importation de la configuration Sequelize
@@ -18,13 +21,25 @@ const sequelize = require('./src/db_setup');  // Ajouter l'importation de la con
 // Middleware pour gérer les requêtes JSON
 app.use(express.json());
 
+// Middleware CORS
+app.use(cors({ origin: 'http://localhost' }));
+
 // Middleware de gestion des erreurs
 app.use(errorHandler);
 
 // Utilisation des routes définies dans src/routes/
-app.use('', homeRoutes);                    // Toutes les routes API commenceront par '/api/home'
+app.use('', homeRoutes);                             // Toutes les routes API commenceront par '/api/home'
 app.use('/api/auth', authRoutes);                    // Toutes les routes API commenceront par '/api/auth'
-app.use('/api/users', userRoutes);                    // Toutes les routes API commenceront par '/api/users'
+app.use('/api/users', userRoutes);                   // Toutes les routes API commenceront par '/api/users'
+
+// Rate limiting middleware
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000,  // 15 minutes
+  max: 100,                  // Limiter chaque IP à 100 requètes par fenètres
+  message: 'Too many requests from this IP, please try again after 15 minutes',
+});
+
+app.use(limiter)
 
 // Test de la connexion à la base de données avant de démarrer le serveur
 sequelize.authenticate()
