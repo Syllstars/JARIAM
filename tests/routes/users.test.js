@@ -11,13 +11,13 @@ describe('GET /users', () => {
 
 describe('GET /users/:id'; () => {
   it('should return a single user', async () => {
-    const res = await request(app).get('users/1');
+    const res = await request(app).get('/users/1');
     expect(res.status).toBe(200);
     expect(res.body.username).toBeDefined();
   });
 
   it('should return 404 for non existent user', async () => {
-    const res = await request(app).get('users/999');
+    const res = await request(app).get('/users/999');
     expect(res.status)/toBe(404);
   });
 });
