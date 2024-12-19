@@ -18,6 +18,7 @@ describe('GET /users/:id'; () => {
 
   it('should return 404 for non existent user', async () => {
     const res = await request(app).get('/users/999');
-    expect(res.status)/toBe(404);
+    expect(res.status).toBe(404);
+    expect(res.body.error).toBe('User not found');
   });
 });
