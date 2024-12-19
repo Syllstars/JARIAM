@@ -32,12 +32,13 @@ router.post('/login', async (req, res) => {
   const user = await User.findOne({ where: { username } });
   if (!user || !(await bcrypt.compare(password, user.password))) {
     return res.status(401).json({ error: 'Invalid credentials' });
+  } else {
+    const payload = { username };
+    const token = jwt.sign(payload, 'JARIAM', { expiresIn: '1h' });
+    const refreshToken = jwt.sign(payload, 'JARIAM', { expiresIn: '7h' });
+
+    return res.json({ token, refreshToken });
   }
-
-  const payload = { username }
-  const token = jwt.sign(payload, 'JARIAM', { expiresIn: '1h' });
-
-  res.json({ token });
 });
 
 module.exports = router;
