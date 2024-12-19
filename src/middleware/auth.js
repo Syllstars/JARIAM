@@ -6,13 +6,13 @@ const authenticate = (req, res, next) => {
         return res.status(403).json({ error: 'No token provided' });
     }
 
-    jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
-        if (err) {
-            return res.status(401).json({ error: 'Unauthorized' });
-        }
-        req.user = decoded;
+    try {
+        const decoded = jwt.verify(token, process.env.APP_SECRET);
+        req.user = decoded; // Inclure le rôle depuis le token
         next();
-    });
+    } catch (err) {
+        return res.status(401).json({ message: 'Unauthorized: Invalid token' });
+    }
 };
 
 module.exports = authenticate;
