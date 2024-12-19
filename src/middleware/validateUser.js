@@ -1,16 +1,17 @@
-const { check, validationResult } = require('express-validator');
+const Joi = require('joi');
 
-const validateUser = [
-  check('name').not().isEmpty().withMessage('Name is required'),
-  check('email').isEmail().withMessage('Invalid email format'),
-  check('password').isLength({ min: 6 }).withMessage('Password must be at least 6 characters'),
-  (req, res, next) => {
-    const errors = validationResult(req);
-    if (!error.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
-    next();
+const validateUser = (req, res, next) => {
+  const schema = Joi.object({
+    name: Joi.string().min(3).required(),
+    email: Joi.string().email().required(),
+    password: Joi.string().min(6).required(),
+  });
+
+  const { error } = schema.validate(req.body);
+  if (error) {
+    return res.status(400).json({ error: error.details[0].message });
   }
-];
+  next();
+};
 
 module.exports = validateUser;
