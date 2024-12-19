@@ -23,6 +23,11 @@ User.init({
         type: DataTypes.STRING,
         allowNull: false,
     },
+    role: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        defaultValue: 'user',
+    },
 }, {
     sequelize,  // Associe le modèle à la base de données
     modelName: 'User',  // Nom du modèle
