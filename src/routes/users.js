@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const { User } = require('../models');
 const authenticate = require('../middleware/auth');
+const hasRole = require('../middleware/hasRole');
 
 // Route pour récupérer tous les utilisateurs
 router.get('/', (req, res) => {
@@ -74,6 +75,16 @@ router.delete('/:id', authenticate, async (req, res) => {
     } catch (error) {
       res.status(500).json({ error: `Server error` });
     }
+});
+
+// Route accessible uniquement aux admins
+router.get('/admin', hasRole('admin'), (req, res) => {
+  res.json({ message: 'Welcome, admin!'});
+});
+
+// Route publique accessible à tous
+router.get('/public', (req, res) => {
+  res.json({ message: 'This route is public.' });
 });
 
 
