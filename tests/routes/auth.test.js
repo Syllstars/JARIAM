@@ -19,6 +19,15 @@ describe('POST /auth/register', () => {
       .post('/auth/register')
       .send({ username: 'newuser' });
     expect(res.status).toBe(400);
+    expect(res.body.error).toBe('Missing username or password');
+  });
+
+  it('should return status 400 if missing fields', async () => {
+    const res = await request(app)
+      .post('/auth/register')
+      .send({ password: 'newpassword' });
+    expect(res.status).toBe(400);
+    expect(res.body.error).toBe('Missing username or password');
   });
 });
 
