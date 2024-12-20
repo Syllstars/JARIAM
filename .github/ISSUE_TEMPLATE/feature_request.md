@@ -1,7 +1,7 @@
 ---
 name: Feature Request
 about : Proposé une nouvelle fonctionnalité
-titre : "[FEATURE] Description de la fonctionnalité
+titre : "[FEATURE] Description de la fonctionnalité"
 label : enhancement
 assignees: ''
 ---
