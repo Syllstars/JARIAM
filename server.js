@@ -15,6 +15,8 @@ const authRoutes = require('./src/routes/auth');     // Chargement des routes d�
 const userRoutes = require('./src/routes/users');    // Chargement des routes définies dans src/routes/users
 const homeRoutes = require('./src/routes/home');     // Chargement des routes définies dans scr/routes/home
 
+const notificationRoutes = require("./routes/notifications");
+
 // Base de données (Sequelize)
 const sequelize = require('./src/db_setup');  // Ajouter l'importation de la configuration Sequelize
 
@@ -26,6 +28,10 @@ app.use(cors({ origin: 'http://localhost' }));
 
 // Middleware de gestion des erreurs
 app.use(errorHandler);
+
+// Middleware pour les notifications
+app.use("/notifications", notificationRoutes);
+
 
 // Utilisation des routes définies dans src/routes/
 app.use('', homeRoutes);                             // Toutes les routes API commenceront par '/api/home'
