@@ -40,7 +40,7 @@ router.post('/', authenticate, hasRole('admin'), async(req, res) => {
 router.put('/:id', authenticate, hasRole('admin'), async (req, res) => {
   const user = await User.findByPk(req.params.id);
   if (!user) {
-    retourn res.status(404).json({ error: 'User not found' });
+    return res.status(404).json({ error: 'User not found' });
   }
 
   const { username, email, password } = req.body;
@@ -56,7 +56,7 @@ router.put('/:id', authenticate, hasRole('admin'), async (req, res) => {
 router.delete('/:id', authenticate, hasRole('admin'), async (req, res) => {
   const user = await User.findByPk(req.params.id);
   if (!user) {
-    retourn res.status(404).json({ error: 'User not found' });
+    return res.status(404).json({ error: 'User not found' });
   }
 
   await user.destroy();
