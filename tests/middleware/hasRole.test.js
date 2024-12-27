@@ -14,7 +14,7 @@ describe('Middleware hasRole', () => {
     const req = { user: { role: 'user' } };
     const res = {
       status: jest.fn().mockReturnThis(),
-      json: test.fn(),
+      json: jest.fn(),
     };
     const next = jest.fn();
 
@@ -30,7 +30,7 @@ describe('Middleware hasRole', () => {
       status: jest.fn().mockReturnThis(),
       json: jest.fn(),
     };
-    const next = jest.fn()
+    const next = jest.fn();
 
     hasRole('admin')(req, res, next);
 
