@@ -9,6 +9,8 @@ const { User} = require('../models');
 
 const loginLimiter = require("../middleware/rateLimiter");
 
+const auditLogger = require("../middleware/auditLogger");
+
 // Route pour l'inscription d'un utilisateur
 router.post('/register', hasRole('admin'), async (req, res) => {
   const { username, password, email } = req.body;
@@ -77,6 +79,16 @@ router.post("/2fa/verify", async (req, res) => {
   } else {
     res.status(400).json({ message: "Invalid 2FA token" });
   }
+});
+
+router.post("/change-password", auditLogger, async (req, res) => {
+  const { newPassword } = req.body;
+  const user = await User.findByPk(req.user.id);
+
+  user.password = newPassword; // Hash et sauvegarde
+  await user.save();
+
+  res.status(200).json({ message: "Mot de passe modifié avec succès" });
 });
 
 
