@@ -5,11 +5,11 @@ const jwt = require('jsonwebtoken');  // Importation de jsonwebtoken
 const bcrypt = require('bcrypt');
 const speakeasy = require("speakeasy");
 
-const { User} = require('../models');
+const { User } = require('../models');
 
 const loginLimiter = require("../middleware/rateLimiter");
-
 const auditLogger = require("../middleware/auditLogger");
+const hasRole = require("../middleware/hasRole");
 
 // Route pour l'inscription d'un utilisateur
 router.post('/register', hasRole('admin'), async (req, res) => {
