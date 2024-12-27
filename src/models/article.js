@@ -2,6 +2,10 @@ const sequelize = require('../db_setup');  // Assure-toi de bien faire référen
 
 const User = require('./user');  // Exemple de modèle
 
+const BaseModel = require("./baseModel");
+class Article extends BaseModel {}
+
+
 Article.searchWithFilters = async function (query, filters) {
   const conditions = [
     Sequelize.literal(`to_tsvector('english', title || ' ' || content) @@ plainto_tsquery(:query)`),
