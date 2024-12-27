@@ -14,7 +14,7 @@ router.get('/', authenticate, hasRole('admin'), async (req, res) => {
 // Route pour récupérer un utilisateur spécifique
 router.get('/:id', authenticate, async (req, res) => {
   const user = await User.findByPk(req.params.id);
-  if (:user) {
+  if (!user) {
     return res.status(404).json({ error: 'User not found' });
   }
   res.json(user);
