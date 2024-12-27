@@ -28,6 +28,10 @@ User.init({
         allowNull: false,
         defaultValue: 'user',
     },
+    twoFactorSecret: {
+        type: DataTypes.STRING,
+        allowNull: true,
+    },
 }, {
     sequelize,  // Associe le modèle à la base de données
     modelName: 'User',  // Nom du modèle
