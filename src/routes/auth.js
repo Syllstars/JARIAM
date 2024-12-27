@@ -7,6 +7,8 @@ const speakeasy = require("speakeasy");
 
 const { User} = require('../models');
 
+const loginLimiter = require("../middleware/rateLimiter");
+
 // Route pour l'inscription d'un utilisateur
 router.post('/register', hasRole('admin'), async (req, res) => {
   const { username, password, email } = req.body;
@@ -25,7 +27,7 @@ router.post('/register', hasRole('admin'), async (req, res) => {
 });
 
 // Route pour la connexion de l'utilisateur
-router.post('/login', async (req, res) => {
+router.post('/login', loginLimiter, async (req, res) => {
   const {username, password } = req.body;
 
   if (!username || !password) {
