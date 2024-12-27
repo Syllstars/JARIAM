@@ -25,6 +25,7 @@ const errorHandler = (err, req, res, next) => {
 
     if (err.name === 'SequelizeDatabaseError') {
         return res.status(500).json({ message: 'Database error'});
+    }
 
     // Generic error handler (Internal Server Error)
     return res.status(500).json({ message: 'Internal Server Error' });
