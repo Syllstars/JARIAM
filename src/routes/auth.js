@@ -1,7 +1,10 @@
 const express = require('express');
 const router = express.Router();
+
 const jwt = require('jsonwebtoken');  // Importation de jsonwebtoken
 const bcrypt = require('bcrypt');
+const speakeasy = require("speakeasy");
+
 const { User} = require('../models');
 
 // Route pour l'inscription d'un utilisateur
@@ -40,5 +43,40 @@ router.post('/login', async (req, res) => {
     return res.json({ token, refreshToken });
   }
 });
+
+router.post("/2fa/setup", async (req, res) => {
+  try {
+    const secret = speakeasy.generateSecret();
+    const user = await User.findByPk(req.user.id);
+    user.twoFactorSecret = secret.base32;
+    await user.save();
+
+    res.status(200).json({
+      otpauth_url: secret.otpauth_url, // URL pour QR code
+      message: "2FA setup complete",
+    });
+  } catch (error) {
+    res.status(500).json({ message: "Erreur lors de la configuration de 2FA", error });
+  }
+});
+
+router.post("/2fa/verify", async (req, res) => {
+  const { token } = req.body;
+  const user = await User.findByPk(req.user.id);
+
+  const verified = speakeasy.totp.verify({
+    secret: user.twoFactorSecret,
+    encoding: "base32",
+    token,
+  });
+
+  if (verified) {
+    res.status(200).json({ message: "2FA verified successfully" });
+  } else {
+    res.status(400).json({ message: "Invalid 2FA token" });
+  }
+});
+
+
 
 module.exports = router;
