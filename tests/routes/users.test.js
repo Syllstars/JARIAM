@@ -9,7 +9,7 @@ describe('GET /users', () => {
   });
 });
 
-describe('GET /users/:id'; () => {
+describe('GET /users/:id', () => {
   it('should return a single user', async () => {
     const res = await request(app).get('/users/1');
     expect(res.status).toBe(200);
