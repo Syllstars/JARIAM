@@ -13,3 +13,5 @@ router.get("/", async (req, res) => {
   const articles = await Article.findByTenant(req.tenantId);
   res.status(200).json(articles);
 });
+
+module.exports = router;
