@@ -15,7 +15,7 @@ const authRoutes = require('./src/routes/auth');     // Chargement des routes d�
 const userRoutes = require('./src/routes/users');    // Chargement des routes définies dans src/routes/users
 const homeRoutes = require('./src/routes/home');     // Chargement des routes définies dans scr/routes/home
 
-const notificationRoutes = require("./routes/notifications");
+const notificationRoutes = require("./src/routes/notifications");
 
 // Base de données (Sequelize)
 const sequelize = require('./src/db_setup');  // Ajouter l'importation de la configuration Sequelize
