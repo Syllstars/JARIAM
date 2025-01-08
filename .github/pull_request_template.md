@@ -1,4 +1,4 @@
-# Decription
+# Description
 
 Expliquez brièvement les modifications apportées.
 
@@ -14,4 +14,4 @@ Expliquez brièvement les modifications apportées.
 - [ ] La documentation a été mise à jour (le cas échéant).
 
 ## Liens liés
-Ajoutez ici des liens vers les issues ou discussions perinentes.
+Ajoutez ici des liens vers les issues ou discussions pertinentes.
