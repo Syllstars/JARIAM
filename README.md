@@ -81,17 +81,28 @@ L'application sera accessible à l'adresse suivante : http://localhost:3000
 ```plaintext
 JARIAM/
 ├── src/                # Code source principal
-│   ├── controllers/    # Logique métier
-│   ├── routes/         # Définition des routes API
+│   ├── middleware/     # Logique métier
 │   ├── models/         # Modèles de données Sequelize
+│   ├── routes/         # Définition des routes API
 │   ├── services/       # Services réutilisables (authentifications, etc.)
+│   ├── utils/          # Gestions auxiliaires
 ├── public/             # Fichiers statiques pour le frontend
 │   ├── js/
 │   ├── css/
 │   ├── images/
+├── tests               # Code de test Unitaire et Fonctionnel
+│   ├── middleware/
+│   ├── routes/
+│   ├── services/
+│   ├── models/
 ├── db_setup/           # Fichier d'initialisation de la base de données
-├── package.json
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── LICENSE
 ├── README.md
+├── SECURITY.md
+├── package.json
+├── server.js
 ```
 
 ---
