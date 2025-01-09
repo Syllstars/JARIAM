@@ -85,13 +85,20 @@ JARIAM/
 │   ├── routes/         # Définition des routes API
 │   ├── models/         # Modèles de données Sequelize
 │   ├── services/       # Services réutilisables (authentifications, etc.)
-├── public/             # Fichiers statiques pour le frontend
-│   ├── js/
-│   ├── css/
-│   ├── images/
+│   ├── components/     # Composants utilisé par les pages Web
+│   ├── pages/          # Gestion des Pages Web
+│   ├── utils/          # Utilitaire pour gérer les appels API
+│   ├── App.js          # Configurer les routes
+│   ├── index.css       # Fichier CSS global
+│   ├── index.js        # Point d'entrée de l'application
 ├── db_setup/           # Fichier d'initialisation de la base de données
-├── package.json
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── LICENSE
 ├── README.md
+├── SECURITY.md
+├── package.json
+├── server.js
 ```
 
 ---
