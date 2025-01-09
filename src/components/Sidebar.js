@@ -1,29 +1,30 @@
-import React from 'react';
+import React from "react";
+
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
-  const menuItems = [
-    { name: 'Accueil', path: '/' },
-    { name: 'Utilisateurs', path: '/users' },
-    { name: 'Statistiques', path: '/stats' },
-    { name: 'paramètres', path: '/settings' }
-  ];
-
   return (
-    <div className="sidebar bg-gray-800 text-white w-64 h-screen p-4">
-      <h2 className="text-2x1 font-bold mb-6">Menu</h2>
+    <div className="h-screen w-64 bg-gray-900 text-white p-6">
+      <h2 className="text-x1 font-bold mb-6">Menu</h2>
       <ul>
-        { menuItems.map((item, index) => (
-          <li key={index} className="mb-4">
-            <a href={item.path} className="hover:text-gray-400">
-              { item.name}
-            </a>
-          </l>
-        ))}
+        <li className="mb-4">
+          <Link to="/" className="hover:text-blue-400">Dashboard</Link>
+        </li>
+        <li className="mb-4">
+          <Link to="/users" className="hover:text-blue-400">Utilisateurs</Link>
+        </li>
+        <li className="mb-4">
+          <Link to="/logs" className="hover:text-blue-400">Logs & Audits</Link>
+        </li>
+        <li className="mb-4">
+          <Link to="/security" className="hover:text-blue-400">Sécurité</Link>
+        </li>
+        <li className="mb-4">
+          <Link to="/settings" className="hover:text-blue-400">Paramètres</Link>
+        </li>
       </ul>
     </div>
   );
 };
 
 export default Sidebar;
-  
-  
