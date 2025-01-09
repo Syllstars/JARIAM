@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 const { asyncWrapper } = require('../middleware/errorHandler');
 const stockService = require('../services/stockService');
-const { hasRole } = require('../middleware/hasRole');
+const { hasRole } = require('../middleware/authentification');
 
 // Route pour récupérer tous les articles en stock
 router.get('/items', hasRole('admin', 'manager'), asyncWrapper(async (req, res) => {

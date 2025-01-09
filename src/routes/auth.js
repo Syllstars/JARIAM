@@ -2,12 +2,12 @@
 
 const express = require('express');
 const router = express.Router();
-const { login, logout, refreshToken } = require('../services/authService');
-const { validateLogin, validateRefreshToken } = require('../middleware/validateUser');
-const { asyncWrapper } = require('../middleware/errorHandler');
+const { login, register } = require('../services/userService'); // Exemple d'appel au service utilisateur
+const { hasRole } = require('../middleware/authentification');
+const { checkAccessControl } = require('../services/accessControlService');
 
 // Route pour se connecter
-router.post('/login', validateLogin, asyncWrapper(async (req, res) => {
+router.post('/login', hasRole, asyncWrapper(async (req, res) => {
   const { username, password } = req.body;
   const token = await login(username, password);
   res.status(200).json({ token });
@@ -21,7 +21,7 @@ router.post('/logout', asyncWrapper(async (req, res) => {
 }));
 
 // Route pour rafraîchir le token
-router.post('/refresh', validateRefreshToken, asyncWrapper(async (req, res) => {
+router.post('/refresh', asyncWrapper(async (req, res) => {
   const { refreshToken: oldRefreshToken } = req.body;
   const newTokens = await refreshToken(oldRefreshToken);
   res.status(200).json({ accessToken: newTokens.accessToken, refreshToken: newTokens.refreshToken });

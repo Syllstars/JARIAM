@@ -2,8 +2,8 @@
 
 const express = require('express');
 const router = express.Router();
-const { getAuditLogs, getAuditLogById, createAuditLog } = require('../services/auditService');
-const { hasRole } = require('../middleware/hasRole');
+const { getAuditLogById, createAuditLog } = require('../services/auditService');
+const { hasRole } = require('../middleware/authentification');
 const { asyncWrapper } = require('../middleware/errorHandler');
 
 // Route pour récupérer tous les logs d'audit

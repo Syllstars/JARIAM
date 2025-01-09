@@ -35,7 +35,7 @@ class CustomError extends Error {
 }
 
 // Middleware pour capturer les erreurs de validation
-const validationErrorHandler = (err, req, res next) => {
+const validationErrorHandler = (err, req, res, next) => {
   if (err.name == 'ValidationError') {
     return res.status(400).json({
       success: false,

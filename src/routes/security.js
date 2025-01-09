@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 const { authenticateUser, authorizeUser } = require('../services/securityService');
 const { asyncWrapper } = require('../middleware/errorHandler');
-const { hasRole } = require('../middleware/hasRole');
+const { hasRole } = require('../middleware/authentification');
 
 // Route pour l'authentification d'un utilisateur (connexion)
 router.post('/login', asyncWrapper(async (req, res) => {

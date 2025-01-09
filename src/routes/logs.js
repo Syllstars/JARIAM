@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const { getLogs, getLogById, createLog, deleteLog } = require('../services/logService');
-const { hasRole } = require('../middleware/hasRole');
+const { hasRole } = require('../middleware/authentification');
 const { asyncWrapper } = require('../middleware/errorHandler');
 
 // Route pour récupérer tous les logs

@@ -2,8 +2,8 @@
 
 const express = require('express');
 const router = express.Router();
-const { getAllUsers, getUserById, createUser, updateUser, deleteUser } = require('../services/userService');
-const { hasRole } = require('../middleware/hasRole');
+const { hasRole } = require('../middleware/authentification');
+const { getAllUsers, getUserById, updateUser, deleteUser } = require('../services/userService');
 const { validateUser, validateUserUpdate } = require('../middleware/validateUser');
 const { asyncWrapper } = require('../middleware/errorHandler');
 
