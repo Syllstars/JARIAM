@@ -64,7 +64,7 @@ Community members who violate this Code of Conduct may face actions including, b
 
 ## Appeals
 
-If you feel that a decision made by the maintainers regarding enforcement was unjust, you may file an appeal by contacting [email@example.com]. Appeals will be reviewed by an impartial member of the community.
+If you feel that a decision made by the maintainers regarding enforcement was unjust, you may file an appeal by contacting [jariam@gmail.com]. Appeals will be reviewed by an impartial member of the community.
 
 ---
 
