@@ -3,13 +3,13 @@
 
 ## Supported Versions
 
-The following table shows which versions of **[Project Name]** are actively supported with security updates:
+The following table shows which versions of **JARIAM** are actively supported with security updates:
 
 | Version   | Supported          |
 |-----------|--------------------|
-| x.x.x     | âœ… Fully supported |
-| x.x.x     | âŒ No longer supported |
-| x.x.x     | âŒ No longer supported |
+| 1.0.0     |  :white_check_mark: Fully supported |
+| 2.0.0     |  :x: No longer supported |
+| 3.0.0     |  :x: No longer supported |
 
 If you are using an unsupported version, we strongly recommend upgrading to the latest version to benefit from security patches.
 
@@ -17,11 +17,11 @@ If you are using an unsupported version, we strongly recommend upgrading to the 
 
 ## Reporting a Vulnerability
 
-If you discover a security vulnerability in **[Project Name]**, please report it to us immediately to ensure it can be promptly addressed.
+If you discover a security vulnerability in **JARIAM**, please report it to us immediately to ensure it can be promptly addressed.
 
 ### How to Report
 1. **Contact Us Privately**  
-   Email the details of the vulnerability to our security team at **[security@example.com]**. Please include:
+   Email the details of the vulnerability to our security team at **[jariam@gmail.com]**. Please include:
    - A detailed description of the vulnerability.
    - Steps to reproduce the issue.
    - Any potential impact or exploit scenarios.
@@ -65,7 +65,7 @@ If you discover a security vulnerability in **[Project Name]**, please report it
 ## Security Best Practices
 
 To protect your application and environment, we recommend the following:
-- Always use the latest stable version of **[Project Name]**.
+- Always use the latest stable version of **JARIAM**.
 - Regularly review your dependencies for vulnerabilities (e.g., using `npm audit`).
 - Report suspicious behavior in the project promptly.
 
@@ -73,7 +73,7 @@ To protect your application and environment, we recommend the following:
 
 ## Need Help?
 
-If you have questions or concerns regarding security, feel free to contact us at **[security@example.com]**.
+If you have questions or concerns regarding security, feel free to contact us at **[jariam@gmail.com]**.
 
 ---
 
