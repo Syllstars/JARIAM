@@ -47,7 +47,7 @@ Maintainers have the right and responsibility to remove, edit, or reject comment
 
 ## Enforcement
 
-Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the project team at [email@example.com]. All complaints will be reviewed and investigated promptly and fairly.
+Instances of abusive, harassing, or otherwise unacceptable behavior may be reported to the project team at [jariam@gmail.com]. All complaints will be reviewed and investigated promptly and fairly.
 
 The project team is obligated to maintain confidentiality regarding the reporter of an incident. Further details of specific enforcement policies may be posted separately.
 
