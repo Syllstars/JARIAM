@@ -10,7 +10,7 @@ version](https://img.shields.io/badge/PostgreSQL-latest-blue.svg)](https://www.p
 [![License :
 MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**JARIAM** est une application complète de gestion et de visualisation de données industrielles. Elle permet de centraliser, analyser et afficher des informations en temps réel, avec une interface intuitive et performante.
+**JARIAM** est une application complète de gestion de projets qui permet d'attribuer automatiquement des ressources humaines en fonction de leurs compétences et de leurs disponibilité. En plus de la gestion des ressources humaines, l'application inclut un système de gestion des stocks pour suivre les matériels et ressources nécessaires aux projets.
 
 ---
 
@@ -29,11 +29,19 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.or
 **JARIAM** est une application web axée sur la gestion intelligente des projets. Elle permet aux utilisateurs de centraliser, organiser et suivre les informations clés d'un projet, avec une interface intuitive et dse outils personnalisables.
 
 ## **Fonctionnalités**
-- **Gestion des utilisateurs :** Créer, modifier et supprimez des utilisateurs avec des rôles spécifiques.
-- **Visualisation des données :** Affichage dynamique des données collectées depuis des sources externes.
-- **Authentification sécurisée :** Login avec mot de passe hashés.
-- **API REST :** Exposition des données via une API REST pour une intégration facile avec d'autres outils
-- Stockage de données :** Base de données relationnelle PostgreSQL
+### 1. Gestion des Projects
+- **Création et gestion de projets** : Créez des projets avec des informations telles que la description, les dates de début et de fin, et le status du projet.
+- **Suivi de l'avancement** : Suivez l'avancement de chaque projet avec une vue d'ensemble des tâches terminées, en cours et à venir.
+- **Assignation de tâches** : Attribuez des tâches spécifiques aux projets et suivez leur progression.
+
+### 2. Attribution des Ressources Humaines
+- **Profils des utilisateurs** : Chaque utilisateurs a un profil détaillant ses compétences, ses disponibilités, et son historique de projet.
+- **Attribution automatique des ressources** : L'application attribue des ressources aux projets en fonction des compétences des utilisateurs et de leur disponibilité.
+
+### 3. Gestion des Stocks
+- **Suivi des stocks** : Gérez l'inventaire des matériels et équipements nécessaires aux projets.
+- **Alertes de réapprovisionnement** : Recevez des notifications lorsque le stock atteint un seuil critique.
+- **Gestion des entrées et sorties** : Suivez l'utilisation des stocks pour chaque projet et assurez-vous que les besoins sont couverts en temps réel.
 
 ## **Technologies utilisées**
 - **Backend :** Node.JS (Express.js)
