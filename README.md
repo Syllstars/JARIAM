@@ -129,8 +129,8 @@ JARIAM/
 
 ## **Roadmap**
 ### **Version prévues :**
-- v1.0 : Mise en place des fonctionnalité de base (utilisateurs, visualisation des données, backend et frontend).
-- v2.0 : Intégration des API externes et amélioration des performances.
+- v1.0.0 : Mise en place des fonctionnalité de base (utilisateurs, visualisation des données, backend et frontend).
+- v2.0.0 : Intégration des API externes et amélioration des performances.
 
 ## **License**
 Ce projet est sous licence MIT. Consultez le fichier [LICENSE](LICENSE) pour plus de détails.
