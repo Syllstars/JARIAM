@@ -1,7 +1,7 @@
 
-# Contributing to [JARIAM]
+# Contributing to JARIAM
 
-Thank you for your interest in contributing to **[Project Name]**! Contributions are a vital part of the project, and we appreciate your effort to help us improve. This document outlines the process for contributing and ensures a smooth collaboration for everyone.
+Thank you for your interest in contributing to **JARIAM**! Contributions are a vital part of the project, and we appreciate your effort to help us improve. This document outlines the process for contributing and ensures a smooth collaboration for everyone.
 
 ---
 
@@ -46,8 +46,8 @@ Before contributing, ensure you have:
 1. **Fork the repository**: Click the "Fork" button on the top-right corner of the GitHub page.
 2. **Clone your fork**:
    ```bash
-   git clone https://github.com/your-username/[project-name].git
-   cd [project-name]
+   git clone https://github.com/Syllstars/JARIAM.git
+   cd JARIAM
    ```
 3. **Install dependencies**:
    ```bash
@@ -87,7 +87,7 @@ npm start
    git push origin feature/my-new-feature
    ```
 4. **Submit a Pull Request**:
-   - Go to the [Pull Requests](https://github.com/[your-repository]/pulls) section.
+   - Go to the [Pull Requests](https://github.com/JARIAM/pulls) section.
    - Click "New Pull Request" and fill in the required details.
    - Link any relevant issues using `Fixes #issue-number`.
 
@@ -111,8 +111,8 @@ By contributing, you agree to abide by our [Code of Conduct](./CODE_OF_CONDUCT.m
 ## Need Help?
 
 If you have questions, feel free to:
-- Open a discussion in the [Discussions](https://github.com/[your-repository]/discussions) tab.
-- Reach out to the maintainers at [email@example.com].
+- Open a discussion in the [Discussions](https://github.com/JARIAM/discussions) tab.
+- Reach out to the maintainers at [jariam@gmail.com].
 
 Weâ€™re excited to have you on board and look forward to your contributions!
 
