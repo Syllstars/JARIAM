@@ -23,7 +23,7 @@ There are many ways to contribute to this project:
    - Potential implementation ideas.
 
 3. **Fixing Bugs or Adding Features**  
-   - Browse the [issues list](https://github.com/[your-repository]/issues) and find something you'd like to work on.
+   - Browse the [issues list](https://github.com/Syllstars/JARIAM/issues) and find something you'd like to work on.
    - Comment on the issue to let others know you're working on it.
    - Follow the coding guidelines below when submitting changes.
 
@@ -87,7 +87,7 @@ npm start
    git push origin feature/my-new-feature
    ```
 4. **Submit a Pull Request**:
-   - Go to the [Pull Requests](https://github.com/JARIAM/pulls) section.
+   - Go to the [Pull Requests](https://github.com/Syllstars/JARIAM/pulls) section.
    - Click "New Pull Request" and fill in the required details.
    - Link any relevant issues using `Fixes #issue-number`.
 
@@ -111,7 +111,7 @@ By contributing, you agree to abide by our [Code of Conduct](./CODE_OF_CONDUCT.m
 ## Need Help?
 
 If you have questions, feel free to:
-- Open a discussion in the [Discussions](https://github.com/JARIAM/discussions) tab.
+- Open a discussion in the [Discussions](https://github.com/Syllstars/JARIAM/discussions) tab.
 - Reach out to the maintainers at [jariam@gmail.com].
 
 Weâ€™re excited to have you on board and look forward to your contributions!
