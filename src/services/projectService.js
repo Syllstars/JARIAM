@@ -1,5 +1,8 @@
 // Importation des dépendances
-const { Project, User, Resource, sequelize } = require('../models');
+const sequelize = require('sequelize');
+const Project = require('../models/project');
+const User = require('../models/user');
+const Resource = require('../models/Resource');
 const LogService = require('./logService');
 
 const ProjectService = {

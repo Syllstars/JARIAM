@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 const { getAllAssignments, getAssignmentById, createAssignment, updateAssignment, deleteAssignment } = require('../services/assignmentService');
 const { hasRole } = require('../middleware/authentification');
-const { asyncWrapper } = require('../middleware/errorHandler');
+const { asyncWrapper } = require('../middleware/errors');
 
 // Route pour récupérer toutes les attributions
 router.get('/', asyncWrapper(async (req, res) => {

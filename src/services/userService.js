@@ -1,5 +1,5 @@
 // Importation des dépendances
-const { User } = require('../models');
+const { User } = require('../models/user');
 const SecurityService = require('./securityService');
 const LogService = require('./logService');
 const { NotFoundError, ValidationError } = require('../middleware/errors');

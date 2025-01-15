@@ -2,18 +2,16 @@
 const express = require('express');
 const app = express();
 
-const errorHandler = require('./src/middleware/errorHandler');
-const hasRole = require('./src/middleware/hasRole');
+const { errorHandler, notFoundHandler, validationErrorHandler } = require('./src/middleware/errors');
 
 const port = process.env.PORT || 3000;
-// const bodyParser = require('body-parser');
 
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
 
 const authRoutes = require('./src/routes/auth');     // Chargement des routes définies dans src/routes/auth
 const userRoutes = require('./src/routes/users');    // Chargement des routes définies dans src/routes/users
-const homeRoutes = require('./src/routes/home');     // Chargement des routes définies dans scr/routes/home
+const homeRoutes = require('./src/routes/projects');     // Chargement des routes définies dans scr/routes/home
 
 const notificationRoutes = require("./src/routes/notifications");
 
@@ -26,7 +24,13 @@ app.use(express.json());
 // Middleware CORS
 app.use(cors({ origin: 'http://localhost' }));
 
-// Middleware de gestion des erreurs
+// Middleware pour les erreurs de validation
+app.use(validationErrorHandler);
+
+// Middleware pour les routes non trouvées
+app.use(notFoundHandler);
+
+// Middleware global pour gérer les erreurs
 app.use(errorHandler);
 
 // Middleware pour les notifications

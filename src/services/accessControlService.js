@@ -1,7 +1,7 @@
 // Importations nécessaires
 const { ForbiddenError } = require('../utils/errors');
 const logger = require('../middleware/logging');
-const { User, Role } = require('../models');
+const { User, Role } = require('../models/user');
 
 // Service Access Control
 const AccessControlService = {

@@ -4,8 +4,8 @@ const express = require('express');
 const router = express.Router();
 const { hasRole } = require('../middleware/authentification');
 const { getAllUsers, getUserById, updateUser, deleteUser } = require('../services/userService');
-const { validateUser, validateUserUpdate } = require('../middleware/validateUser');
-const { asyncWrapper } = require('../middleware/errorHandler');
+const { validateUser, validateUserUpdate } = require('../middleware/dataProcessing');
+const { asyncWrapper } = require('../middleware/errors');
 
 // Route pour récupérer tous les utilisateurs (accessible par les admins uniquement)
 router.get('/', hasRole('admin'), asyncWrapper(async (req, res) => {

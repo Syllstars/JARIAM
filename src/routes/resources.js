@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 const { getResources, getResourceById, createResource, updateResource, deleteResource } = require('../services/resourceService');
 const { hasRole } = require('../middleware/authentification');
-const { asyncWrapper } = require('../middleware/errorHandler');
+const { asyncWrapper } = require('../middleware/errors');
 
 // Route pour récupérer toutes les ressources
 router.get('/', hasRole('user'), asyncWrapper(async (req, res) => {

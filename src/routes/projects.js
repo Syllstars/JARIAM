@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 const { getProjects, getProjectById, createProject, updateProject, deleteProject } = require('../services/projectService');
 const { hasRole } = require('../middleware/authentification');
-const { asyncWrapper } = require('../middleware/errorHandler');
+const { asyncWrapper } = require('../middleware/errors');
 
 // Route pour récupérer tous les projets
 router.get('/', hasRole('user'), asyncWrapper(async (req, res) => {

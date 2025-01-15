@@ -10,7 +10,7 @@ const Settings = () => {
         const response = await api.get('/settings');
         setSettings(response.data);
       } catch (error) {
-        console.log('Erreur lors de la récupération des paramètres:', error):
+        console.log('Erreur lors de la récupération des paramètres:', error);
       }
     };
     fetchSettings();

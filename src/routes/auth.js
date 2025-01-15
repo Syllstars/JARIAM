@@ -5,9 +5,10 @@ const router = express.Router();
 const { login, register } = require('../services/userService'); // Exemple d'appel au service utilisateur
 const { hasRole } = require('../middleware/authentification');
 const { checkAccessControl } = require('../services/accessControlService');
+const { asyncWrapper } = require('../middleware/errors');
 
 // Route pour se connecter
-router.post('/login', hasRole, asyncWrapper(async (req, res) => {
+router.post('/login', asyncWrapper(async (req, res) => {
   const { username, password } = req.body;
   const token = await login(username, password);
   res.status(200).json({ token });

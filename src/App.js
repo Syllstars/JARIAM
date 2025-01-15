@@ -21,10 +21,11 @@ const App = () => {
             <Route path="/logs" element={<Logs />} />
             <Route path="/security" element={<Security />} />
             <Route path="/settings" element={<Settings />} />
-          </Routes>
+          </Routers>
         </div>
-      </Router>
+      </div>
+    </Router>
   );
 };
 
-export default App; 
+export default App;

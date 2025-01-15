@@ -1,12 +1,12 @@
 const jwt = require('jsonwebtoken');
-const { User } = require('../models');
+const { User } = require('../models/user');
 
 // Middleware d'authentification
 const auth = (req, res, next) => {
   const token = req.headers['authorization'];
 
-  if (!token) { 
-    return res.status(401).jon({ error: 'Accès Refusé. Aucun token fourni.'}); 
+  if (!token) {
+    return res.status(401).jon({ error: 'Accès Refusé. Aucun token fourni.'});
   }
 
   try {
@@ -26,7 +26,7 @@ const hasRole = (requireRole) => {
       if (!req.user) {
         return res.status(401).json({ error: 'Utilisateur non authentifié.' });
       }
-      
+
       const user = await User.findByPk(req.user.id);
       if (!user) {
         return res.status(404).json({ error: 'Utilisateur non trouvé.' });
@@ -49,4 +49,4 @@ module.exports = {
   auth,
   hasRole,
 };
-    
+

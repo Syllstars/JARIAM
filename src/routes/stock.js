@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const { asyncWrapper } = require('../middleware/errorHandler');
+const { asyncWrapper } = require('../middleware/errors');
 const stockService = require('../services/stockService');
 const { hasRole } = require('../middleware/authentification');
 

@@ -17,7 +17,7 @@ const isAuthenticated = (req, res, next) => {
     if (err) {
       return res.status(403).json({ message: 'Token invalide ou expiré' });
     }
-    
+
     req.user = decoded;  // Ajout des informations utilisateur dans la requête
     next();
   });
@@ -38,7 +38,7 @@ const hasRole = (allowedRoles) => {
 
 /**
   * Middleware pour vérifier si un utilisateur possède une permission
-  * @param {String} permission -Permission à vérifier 
+  * @param {String} permission -Permission à vérifier
   */
 const hasPermission = (permission) =>{
   return async (req, res, next) => {
@@ -90,21 +90,21 @@ const preventSQLInjection = (req, res, next) => {
 
   // Vérification du corps de la requête
   for (let key in req.body) {
-    if checkInput(req.body[key])) {
+    if (checkInput(req.body[key])) {
       return res.status(400).json({ message: `Requête invalide, tentative d'injection SQL détecté` });
     }
   }
 
   // Vérification des paramètres de requête
  for (let key in req.query) {
-    if checkInput(req.query[key])) {
+    if (checkInput(req.query[key])) {
       return res.status(400).json({ message: `Requête invalide, tentative d'injection SQL détecté` });
     }
  }
-  
+
   // Vérification des paramètres de requête
   for (let key in req.params) {
-    if checkInput(req.params[key])) {
+    if (checkInput(req.params[key])) {
       return res.status(400).json({ message: `Requête invalide, tentative d'injection SQL détecté` });
     }
   }

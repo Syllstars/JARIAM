@@ -49,9 +49,18 @@ const validationErrorHandler = (err, req, res, next) => {
   next(err); // Si ce n'est pas une erreur de validation, passer au prochain middleware
 };
 
+// Middleware pour simplifier la gestion des erreurs dans les routes asynchrones
+const asyncWrapper = (fn) => {
+  return (req, res, next) => {
+    Promise.resolve(fn(req, res, next)).catch(next);
+  };
+};
+
+
 module.exports = {
   errorHandler,
   notFoundHandler,
   CustomError,
   validationErrorHandler,
+  asyncWrapper,
 };

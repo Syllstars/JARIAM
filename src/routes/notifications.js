@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 const { getNotifications, getNotificationById, createNotification, deleteNotification } = require('../services/notificationService');
 const { hasRole } = require('../middleware/authentification');
-const { asyncWrapper } = require('../middleware/errorHandler');
+const { asyncWrapper } = require('../middleware/errors');
 
 // Route pour récupérer toutes les notifications
 router.get('/', hasRole('user'), asyncWrapper(async (req, res) => {

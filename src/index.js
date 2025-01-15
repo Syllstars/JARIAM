@@ -7,6 +7,6 @@ import components from './components';   // Composant principale de l'applicatio
 ReactDOM.render(
   <React.StrictMode>
     <components />
-  </React.StrictMode>
+  </React.StrictMode>,
   document.getElementById('root')
 );

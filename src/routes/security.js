@@ -3,7 +3,7 @@
 const express = require('express');
 const router = express.Router();
 const { authenticateUser, authorizeUser } = require('../services/securityService');
-const { asyncWrapper } = require('../middleware/errorHandler');
+const { asyncWrapper } = require('../middleware/errors');
 const { hasRole } = require('../middleware/authentification');
 
 // Route pour l'authentification d'un utilisateur (connexion)

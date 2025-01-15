@@ -4,7 +4,7 @@ const express = require('express');
 const router = express.Router();
 const { getLogs, getLogById, createLog, deleteLog } = require('../services/logService');
 const { hasRole } = require('../middleware/authentification');
-const { asyncWrapper } = require('../middleware/errorHandler');
+const { asyncWrapper } = require('../middleware/errors');
 
 // Route pour récupérer tous les logs
 router.get('/', hasRole('admin'), asyncWrapper(async (req, res) => {
