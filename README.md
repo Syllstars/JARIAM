@@ -99,7 +99,7 @@ JARIAM/
 │   ├── App.js          # Configurer les routes
 │   ├── index.css       # Fichier CSS global
 │   ├── index.js        # Point d'entrée de l'application
-├── db_setup/           # Fichier d'initialisation de la base de données
+│   ├── db_setup.js     # Fichier d'initialisation de la base de données
 ├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
 ├── LICENSE
