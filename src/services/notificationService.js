@@ -4,7 +4,7 @@ const LogService = require('./logService');
 
 // Configuration du transport pour les emails
 const transporter = nodemailer.createTransport({
-  host: process.env.SMTP_HOST || 'smtp.example.com',
+  host: process.env.SMTP_HOST || 'smtp.gmail.com',
   port: process.env.SMTP_PORT || 587,
   secure: process.env.EMAIL_SECURE === 'true', // true pour 465, false pour d'autres ports
   auth: {
