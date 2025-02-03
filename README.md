@@ -72,6 +72,12 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.or
    DB_USER=postgres
    DB_PASSWORD=<your password>
    DB_NAME=jariam_db
+
+   SMTP_HOST=smtp.gmail.com
+   SMTP_PORT=465
+   SMTP_USER=<gmail address>
+   SMTP_PASSWORD=<password>
+   EMAIL_SECURE=true
    ```
 7. Démarrer l'application
    ```bash

@@ -1,6 +1,6 @@
 const request = require('supertest');
 const express = require('express');
-const { errorHandler, notFoundHandler } = require('../../middleware/errors');
+const { errorHandler, notFoundHandler } = require('../../src/middleware/errors');
 
 const app = express();
 

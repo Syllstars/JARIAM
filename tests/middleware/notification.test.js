@@ -1,9 +1,9 @@
 const express = require('express');
 const request = require('supertest');
-const { sendNotification } = require('../../middleware/notifications');
-const notificationService = require('../../services/notificationService');
 
-jest.mock('../../services/notificationService'); // Mock du service
+const notificationService = require('../../src/middleware/notification');
+
+jest.mock('../../src/services/notificationService'); // Mock du service
 
 describe('Middleware Notifications', () => {
     const app = express();
@@ -14,7 +14,7 @@ describe('Middleware Notifications', () => {
         next();
     });
 
-    app.post('/test', sendNotification({
+    app.post('/test', notificationService.sendNotification({
         type: 'info',
         message: 'Test notification',
     }), (req, res) => {

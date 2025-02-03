@@ -1,5 +1,5 @@
-const loggerMiddleware = require('../../src/middleware/loggerMiddleware');
-const htpMocks = require('node-mocks-http');
+const loggerMiddleware = require('../../src/middleware/logging');
+const httpMocks = require('node-mocks-http');
 
 describe('Middleware loggerMiddleware', () => {
   it('should log the request data correctly', () => {

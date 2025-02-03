@@ -1,6 +1,5 @@
 const jwt = require('jsonwebtoken');
-const { User } = require('../models');   // Modèle de l'utilisateur pour a vérification des rôles
-const config = require('../config');     // Variables de confguration pour le JWT
+const User = require('../models/user');   // Modèle de l'utilisateur pour a vérification des rôles
 
 /**
   * Middleware pour vérifier si un utilisateur est authentifié.
@@ -13,7 +12,7 @@ const isAuthenticated = (req, res, next) => {
   }
 
   // Vérification de la validité du token
-  jwt.verify(token, config.JWT_SECRET, (err, decoded) => {
+  jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
     if (err) {
       return res.status(403).json({ message: 'Token invalide ou expiré' });
     }

@@ -1,6 +1,6 @@
 const request = require('supertest');
 const express = require('express');
-const { requestLogger, errorLogger } = require('../../middleware/logging');
+const { requestLogger, errorLogger } = require('../../src/middleware/logging');
 
 const app = express();
 

@@ -1,4 +1,4 @@
-const { isNonEmptyString, isValidEmail, generateUniqueId, formatError, sanitizeInput, isAdult, delay } = require('../middleware/utility');
+const { isNonEmptyString, isValidEmail, generateUniqueId, formatError, sanitizeInput, isAdult, delay } = require('../../src/middleware/utility');
 
 describe('Utility Functions', () => {
 

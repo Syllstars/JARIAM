@@ -1,6 +1,6 @@
 const express = require('express');
 const request = require('supertest');
-const { isAuthenticated, hasRole, hasPermission } = require('../middleware/security');
+const { isAuthenticated, hasRole, hasPermission } = require('../../src/middleware/security');
 const jwt = require('jsonwebtoken');
 
 jest.mock('jsonwebtoken');  // Mock de JWT
