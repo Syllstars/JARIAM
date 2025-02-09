@@ -94,25 +94,31 @@ L'application sera accessible à l'adresse suivante : http://localhost:3000
 ## **Structure du Projet**
 ```plaintext
 JARIAM/
-├── src/                # Code source principal
-│   ├── middleware/     # Logique métier
-│   ├── models/         # Modèles de données Sequelize
-│   ├── routes/         # Définition des routes API
-│   ├── services/       # Services réutilisables (authentifications, etc.)
-│   ├── components/     # Composants utilisé par les pages Web
-│   ├── pages/          # Gestion des Pages Web
-│   ├── utils/          # Utilitaire pour gérer les appels API
-│   ├── App.js          # Configurer les routes
-│   ├── index.css       # Fichier CSS global
-│   ├── index.js        # Point d'entrée de l'application
-│   ├── db_setup.js     # Fichier d'initialisation de la base de données
+├── frontend/               # Code frontend
+│   ├── components/         # Composants utilisé par les pages Web
+│   ├── pages/              # Gestion des Pages Web
+│   ├── public/      
+│   ├── package.json    
+│   ├── src/     
+│   │   ├── components/         
+│   │   ├── App.js          # Configurer les routes
+│   │   ├── index.js        # Point d'entrée de l'application     
+├── backend/                # Code backend
+│   ├── middleware/         # Logique métier
+│   ├── models/             # Modèles de données Sequelize
+│   ├── routes/             # Définition des routes API
+│   ├── services/           # Services réutilisables (authentifications, etc.)
+│   ├── utils/              # Utilitaire pour gérer les appels API
+│   ├── db_setup.js         # Fichier d'initialisation de la base de données
+│   ├── package.json
+│   ├── server.js
+│   ├── .env
+│   ├── db_setup.js
 ├── CODE_OF_CONDUCT.md
 ├── CONTRIBUTING.md
 ├── LICENSE
 ├── README.md
 ├── SECURITY.md
-├── package.json
-├── server.js
 ```
 
 ---
