@@ -1,37 +1,32 @@
-const mongoose = require('mongoose');
+const { DataTypes } = require('sequelize');
+const sequelize = require('../db_setup');
 
-// Création du schéma pour les compétences
-const skillSchema = new mongoose.Schema(
-  {
-    name: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    description: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    level: {
-      type: String,
-      required: true,
-      enum: ['beginner', 'intermediate', 'advanced', 'expert'], // Niveaux possibles de compétence
-    },
-    type: {
-      type: String,
-      required: true,
-      enum: ['technical', 'soft', 'management'], // Catégorie de compétence
-    },
-    isActive: {
-      type: Boolean,
-      default: true, // Par défaut, la compétence est active
-    },
+const Skill = sequelize.define('Skill', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
   },
-  { timestamps: true }
-);
-
-// Création du modèle Skill
-const Skill = mongoose.model('Skill', skillSchema);
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  description: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  },
+  level: {
+    type: DataTypes.ENUM('beginner', 'intermediate', 'advanced', 'expert'),
+    allowNull: false,
+  },
+  type: {
+    type: DataTypes.ENUM('technical', 'soft', 'management'),
+    allowNull: false,
+  },
+  isActive: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: true,
+  }
+}, { timestamps: true });
 
 module.exports = Skill;

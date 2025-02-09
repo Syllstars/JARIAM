@@ -1,53 +1,40 @@
-const mongoose = require('mongoose');
+const { DataTypes } = require('sequelize');
+const sequelize = require('../db_setup');
 
-// Création du schéma pour les ressources
-const resourceSchema = new mongoose.Schema(
-  {
-    name: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    type: {
-      type: String,
-      required: true,
-      enum: ['human', 'material', 'equipment'], // Définir les types de ressources
-    },
-    description: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    quantity: {
-      type: Number,
-      required: true,
-      min: 0, // S'assurer que la quantité est un nombre positif
-    },
-    unit: {
-      type: String,
-      required: true,
-      enum: ['units', 'hours', 'pieces', 'kg'], // Unités possibles pour les ressources
-    },
-    cost: {
-      type: Number,
-      required: true,
-      min: 0, // Le coût ne peut pas être négatif
-    },
-    assignedToProjects: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Project',
-      },
-    ],
-    availability: {
-      type: Boolean,
-      default: true, // Ressource disponible par défaut
-    },
+const Resource = sequelize.define('Resource', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
   },
-  { timestamps: true }
-);
-
-// Création du modèle Resource
-const Resource = mongoose.model('Resource', resourceSchema);
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  type: {
+    type: DataTypes.ENUM('human', 'material', 'equipment'),
+    allowNull: false,
+  },
+  description: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  },
+  quantity: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  unit: {
+    type: DataTypes.ENUM('units', 'hours', 'pieces', 'kg'),
+    allowNull: false,
+  },
+  cost: {
+    type: DataTypes.FLOAT,
+    allowNull: false,
+  },
+  availability: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: true,
+  }
+}, { timestamps: true });
 
 module.exports = Resource;

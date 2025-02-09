@@ -1,8 +1,8 @@
 // Importation des dépendances
-const sequelize = require('sequelize');
+const { Op } = require("sequelize"); // Import de Sequelize.Op
 const Project = require('../models/project');
 const User = require('../models/user');
-const Resource = require('../models/Resource');
+const Resource = require('../models/resource');
 const LogService = require('./logService');
 
 const ProjectService = {
@@ -12,7 +12,7 @@ const ProjectService = {
    * @returns {Promise<Object>} - Projet créé.
    */
   createProject: async (projectData) => {
-    const transaction = await sequelize.transaction();
+    const transaction = await Project.sequelize.transaction();
     try {
       const project = await Project.create(projectData, { transaction });
       await transaction.commit();
@@ -53,7 +53,7 @@ const ProjectService = {
    * @returns {Promise<void>}
    */
   deleteProject: async (projectId) => {
-    const transaction = await sequelize.transaction();
+    const transaction = await Project.sequelize.transaction();
     try {
       const project = await Project.findByPk(projectId);
       if (!project) {
@@ -77,7 +77,7 @@ const ProjectService = {
    * @returns {Promise<Array<Object>>} - Liste des ressources assignées.
    */
   assignResources: async (projectId, requiredSkills) => {
-    const transaction = await sequelize.transaction();
+    const transaction = await Project.sequelize.transaction();
     try {
       const project = await Project.findByPk(projectId);
       if (!project) {
@@ -125,6 +125,33 @@ const ProjectService = {
     } catch (error) {
       LogService.error('Erreur lors de la récupération des projets', error);
       throw new Error('Échec de la récupération des projets');
+    }
+  },
+
+  /**
+   * Récupère les projets assignés à un utilisateur donné (en tant que manager ou membre de l'équipe).
+   * @param {number} userId - ID de l'utilisateur.
+   * @returns {Promise<Array<Object>>} - Liste des projets associés à l'utilisateur.
+   */
+  getProjectsByUser: async (userId) => {
+    try {
+      const projects = await Project.findAll({
+        where: {
+          [Op.or]: [
+            { manager: userId }, // L'utilisateur est manager du projet
+            { '$teamMembers.id$': userId } // L'utilisateur est membre de l'équipe
+          ]
+        },
+        include: [
+          { model: User, as: "manager" }, 
+          { model: User, as: "teamMembers" }
+        ],
+      });
+
+      return projects;
+    } catch (error) {
+      console.error("Erreur lors de la récupération des projets par utilisateur:", error);
+      throw new Error("Impossible de récupérer les projets de l'utilisateur.");
     }
   },
 };

@@ -21,6 +21,21 @@ router.get('/:id', hasRole('user'), asyncWrapper(async (req, res) => {
   res.status(200).json(project);
 }));
 
+// Route pour récupérer les projets assignés à l'utilisateur connecté
+router.get('/user-projects', hasRole('user'), asyncWrapper(async (req, res) => {
+  try {
+    const userId = req.user.id; // Récupérer l'ID de l'utilisateur connecté (via le token JWT)
+
+    const projects = await getProjectsByUser(userId); // Utilisation d'un service pour récupérer les projets liés à l'utilisateur
+
+    res.status(200).json(projects);
+  } catch (error) {
+    console.error("Erreur lors de la récupération des projets :", error);
+    res.status(500).json({ message: "Erreur interne du serveur" });
+  }
+}));
+
+
 // Route pour créer un nouveau projet (accessible uniquement par un administrateur)
 router.post('/', hasRole('admin'), asyncWrapper(async (req, res) => {
   const newProject = await createProject(req.body);

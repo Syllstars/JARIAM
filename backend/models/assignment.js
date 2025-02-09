@@ -1,40 +1,36 @@
-const mongoose = require('mongoose');
+const { DataTypes } = require('sequelize');
+const sequelize = require('../db_setup');
 
-// Création du schéma pour l'affectation d'une ressource à un projet
-const assignmentSchema = new mongoose.Schema(
-  {
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: true,
-    },
-    project: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'Project',
-      required: true,
-    },
-    role: {
-      type: String,
-      enum: ['Leader', 'Member'],
-      required: true,
-    },
-    startDate: {
-      type: Date,
-      required: true,
-    },
-    endDate: {
-      type: Date,
-    },
-    status: {
-      type: String,
-      enum: ['Active', 'Completed', 'Pending', 'Cancelled'],
-      default: 'Active',
-    },
+const Assignment = sequelize.define('Assignment', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
   },
-  { timestamps: true }
-);
-
-// Création du modèle Assignment
-const Assignment = mongoose.model('Assignment', assignmentSchema);
+  userId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  projectId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  role: {
+    type: DataTypes.ENUM('Leader', 'Member'),
+    allowNull: false,
+  },
+  startDate: {
+    type: DataTypes.DATE,
+    allowNull: false,
+  },
+  endDate: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
+  status: {
+    type: DataTypes.ENUM('Active', 'Completed', 'Pending', 'Cancelled'),
+    defaultValue: 'Active',
+  }
+}, { timestamps: true });
 
 module.exports = Assignment;

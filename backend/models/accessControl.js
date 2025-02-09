@@ -1,36 +1,20 @@
-const mongoose = require('mongoose');
+const { DataTypes } = require('sequelize');
+const sequelize = require('../db_setup');
 
-// Création du schéma pour le contrôle d'accès
-const accessControlSchema = new mongoose.Schema(
-  {
-    role: {
-      type: String,
-      enum: ['Admin', 'Manager', 'Employee'],
-      required: true,
-    },
-    permissions: [
-      {
-        type: String,
-        enum: [
-          'view_project',
-          'edit_project',
-          'delete_project',
-          'view_users',
-          'edit_users',
-          'delete_users',
-          'manage_resources',
-          'view_reports',
-          'edit_reports',
-          'manage_settings',
-        ],
-        required: true,
-      },
-    ],
+const AccessControl = sequelize.define('AccessControl', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
   },
-  { timestamps: true }
-);
-
-// Création du modèle AccessControl
-const AccessControl = mongoose.model('AccessControl', accessControlSchema);
+  role: {
+    type: DataTypes.ENUM('Admin', 'Manager', 'Employee'),
+    allowNull: false,
+  },
+  permissions: {
+    type: DataTypes.ARRAY(DataTypes.STRING),
+    allowNull: false,
+  }
+}, { timestamps: true });
 
 module.exports = AccessControl;

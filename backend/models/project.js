@@ -1,62 +1,51 @@
-const mongoose = require('mongoose');
+const { DataTypes } = require('sequelize');
+const sequelize = require('../db_setup'); // Import de l'instance Sequelize
+const User = require('./user'); // Import du modèle User
+const Resource = require('./resource'); // Import du modèle Resource
 
-// Création du schéma pour le projet
-const projectSchema = new mongoose.Schema(
-  {
-    name: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    description: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    startDate: {
-      type: Date,
-      required: true,
-    },
-    endDate: {
-      type: Date,
-      required: true,
-    },
-    status: {
-      type: String,
-      enum: ['not started', 'in progress', 'completed', 'on hold'],
-      default: 'not started',
-    },
-    manager: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: true,
-    },
-    teamMembers: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'User',
-      },
-    ],
-    resources: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Resource',
-      },
-    ],
-    budget: {
-      type: Number,
-      required: true,
-    },
-    priority: {
-      type: String,
-      enum: ['low', 'medium', 'high'],
-      default: 'medium',
-    },
+const Project = sequelize.define('Project', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
   },
-  { timestamps: true }
-);
+  name: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    trim: true
+  },
+  description: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+    trim: true
+  },
+  startDate: {
+    type: DataTypes.DATE,
+    allowNull: false
+  },
+  endDate: {
+    type: DataTypes.DATE,
+    allowNull: false
+  },
+  status: {
+    type: DataTypes.ENUM('not started', 'in progress', 'completed', 'on hold'),
+    defaultValue: 'not started'
+  },
+  budget: {
+    type: DataTypes.FLOAT,
+    allowNull: false
+  },
+  priority: {
+    type: DataTypes.ENUM('low', 'medium', 'high'),
+    defaultValue: 'medium'
+  }
+}, {
+  timestamps: true // Active `createdAt` et `updatedAt`
+});
 
-// Création du modèle Project
-const Project = mongoose.model('Project', projectSchema);
+// 🔗 Définition des relations
+Project.belongsTo(User, { as: 'manager', foreignKey: 'managerId' }); // Un projet a un seul manager
+Project.belongsToMany(User, { as: 'teamMembers', through: 'project_teamMembers' }); // Un projet peut avoir plusieurs membres d'équipe
+Project.belongsToMany(Resource, { as: 'resources', through: 'project_resources' }); // Un projet peut utiliser plusieurs ressources
 
 module.exports = Project;

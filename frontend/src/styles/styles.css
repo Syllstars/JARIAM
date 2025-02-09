@@ -45,6 +45,7 @@ body {
     text-decoration: none;
     color: #1c1c1c;
     font-weight: 500;
+    font-weight: bolder;
   }
   
   .nav-button {
@@ -116,8 +117,11 @@ body {
     border-radius: 5px;
     cursor: pointer;
     text-align: center;
+    font-weight: bolder;
   }
   
   .button:hover {
     background-color: #0E1447;
   }
+
+  

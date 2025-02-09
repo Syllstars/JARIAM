@@ -1,38 +1,32 @@
-const mongoose = require('mongoose');
+const { DataTypes } = require('sequelize');
+const sequelize = require('../db_setup');
 
-// Création du schéma pour les logs d'audit
-const auditLogSchema = new mongoose.Schema(
-  {
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
-      required: true,
-    },
-    action: {
-      type: String,
-      required: true,
-    },
-    target: {
-      type: String,
-      required: true,
-    },
-    targetId: {
-      type: mongoose.Schema.Types.ObjectId,
-      refPath: 'target',
-    },
-    details: {
-      type: String,
-      required: true,
-    },
-    timestamp: {
-      type: Date,
-      default: Date.now,
-    },
+const AuditLog = sequelize.define('AuditLog', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true,
   },
-  { timestamps: true }
-);
-
-// Création du modèle AuditLog
-const AuditLog = mongoose.model('AuditLog', auditLogSchema);
+  userId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+  },
+  action: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  target: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  targetId: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+  },
+  details: {
+    type: DataTypes.TEXT,
+    allowNull: false,
+  }
+}, { timestamps: true });
 
 module.exports = AuditLog;
