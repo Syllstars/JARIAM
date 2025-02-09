@@ -7,21 +7,21 @@ const fs = require('fs');
 const path = require('path');
 require('dotenv').config();
 
-const { errorHandler, notFoundHandler, validationErrorHandler } = require('./src/backend/middleware/errors');
+const { errorHandler, notFoundHandler, validationErrorHandler } = require('./middleware/errors');
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 const cors = require('cors');
 const rateLimit = require('express-rate-limit');
 
 // Importation des routes
-const authRoutes = require('./src/backend/routes/auth');
-const userRoutes = require('./src/backend/routes/users');
-const homeRoutes = require('./src/backend/routes/projects');
-const notificationRoutes = require('./src/backend/routes/notifications');
+const authRoutes = require('./routes/auth');
+const userRoutes = require('./routes/users');
+const homeRoutes = require('./routes/projects');
+const notificationRoutes = require('./routes/notifications');
 
 // Base de données (Sequelize)
-const sequelize = require('./src/backend/db_setup');
+const sequelize = require('./db_setup');
 
 // --- Middleware de configuration ---
 

@@ -4,33 +4,10 @@ const express = require('express');
 const router = express.Router();
 const React = require('react');
 const ReactDOMServer = require('react-dom/server');
-const Login = require('../../frontend/components/Login').default;
 const { login, register } = require('../services/userService'); // Exemple d'appel au service utilisateur
 const { hasRole } = require('../middleware/authentification');
 const { checkAccessControl } = require('../services/accessControlService');
 const { asyncWrapper } = require('../middleware/errors');
-
-// Route GET pour afficher la page de connexion en SSR
-router.get('/', (req, res) => {
-  const reactElement = ReactDOMServer.renderToString(React.createElement(Login));
-  // Créer une page HTML simple en insérant le rendu React
-  const html = `
-    <!doctype html>
-    <html>
-      <head>
-        <meta charset="utf-8">
-        <title>Login</title>
-      </head>
-      <body>
-        <div id="root">${reactElement}</div>
-        <!-- Vous devrez inclure ici vos scripts client pour hydrater l'application -->
-        <script src="/static/js/main.js"></script>
-      </body>
-    </html>
-  `;
-  res.send(html);
-});
-
 
 // Route pour se connecter
 router.post('/login', asyncWrapper(async (req, res) => {
