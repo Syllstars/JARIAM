@@ -18,10 +18,14 @@ const LoginPage = () => {
 
       if (!response.ok) {
         throw new Error("Login failed");
-      }
-
+      } 
+      
       const data = await response.json();
       console.log("Token received:", data.token);
+      
+      localStorage.setItem("token", data.token);
+      console.log("Token envoyé après connexion :", localStorage.getItem("token"));
+      
       window.location.href = "/dashboard"; // Redirection après connexion réussie
     } catch (error) {
       console.error("Error during login:", error);
@@ -30,15 +34,6 @@ const LoginPage = () => {
 
   return (
     <div className="login-container">
-      {/* Barre de navigation */}
-      <nav className="navbar">
-        <h1 className="logo">JARIAM</h1>
-        <div className="nav-links">
-          <a href="#">Download</a>
-          <a href="#">About Us</a>
-          <button className="nav-button">Sign In</button>
-        </div>
-      </nav>
 
       {/* Conteneur du formulaire */}
       <div className="login-box">

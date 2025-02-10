@@ -9,14 +9,17 @@ const Dashboard = () => {
 
   useEffect(() => {
     // Récupérer les projets de l'utilisateur connecté
-    axios.get('http://localhost:3001/api/projects', {
+    const token = localStorage.getItem("token");
+    console.log("Token envoyé dans l'en-tête :", token);
+    
+    axios.get('http://localhost:3001/api/home/user-projects', {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     })
       .then(response => setProjects(response.data))
       .catch(error => console.error('Erreur lors de la récupération des projets:', error));
 
     // Récupérer les infos de l'utilisateur
-    axios.get('http://localhost:3001/api/users/me', {
+    axios.get('http://localhost:3001/api/users', {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     })
       .then(response => setUser(response.data))
@@ -25,14 +28,13 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-      <div className="navbar">
-        <div className="logo">JARIAM</div>
-        <div className="user-info">
-          {user && (
-            <span className="user-details">{user.firstName} {user.lastName} ({user.role})</span>
-          )}
+      {/* Barre de navigation */}
+      <nav className="navbar">
+        <h1 className="logo">JARIAM</h1>
+        <div className="nav-links">
+          <button className="nav-button">Logout</button>
         </div>
-      </div>
+      </nav>
 
       <div className="dashboard-content">
         <div className="project-list">

@@ -6,6 +6,7 @@ const morgan = require('morgan');
 const fs = require('fs');
 const path = require('path');
 require('dotenv').config();
+console.log("JWT_SECRET chargé :", process.env.JWT_SECRET);
 
 const { errorHandler, notFoundHandler, validationErrorHandler } = require('./middleware/errors');
 
@@ -17,7 +18,7 @@ const rateLimit = require('express-rate-limit');
 // Importation des routes
 const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
-const homeRoutes = require('./routes/projects');
+const projectRoutes = require('./routes/projects');
 const notificationRoutes = require('./routes/notifications');
 
 // Base de données (Sequelize)
@@ -61,7 +62,7 @@ app.use(morgan('combined', { stream: logStream }));
 // --- Déclaration des routes ---
 
 app.use('', authRoutes);
-app.use('/api/home', homeRoutes);
+app.use('/api/home', projectRoutes);
 app.use('/api/users', userRoutes);
 app.use('/notifications', notificationRoutes);
 
