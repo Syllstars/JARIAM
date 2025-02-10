@@ -1,11 +1,9 @@
 const jwt = require("jsonwebtoken");
-const { User } = require("../models/user");
+const User = require("../models/user");
 
 // Middleware d'authentification
 const auth = async (req, res, next) => {
   const authHeader = req.headers["authorization"];
-
-  console.log("🔹 Requête reçue - Authorization Header:", authHeader);
 
   if (!authHeader) {
     console.log("❌ Aucun token fourni !");
@@ -16,11 +14,8 @@ const auth = async (req, res, next) => {
     // Extraction du token (en enlevant "Bearer ")
     const token = authHeader.replace("Bearer ", "").trim();
 
-    console.log("🔹 Token extrait :", token);
-
     // Vérification du token
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    console.log("✅ Token décodé :", decoded);
 
     // Vérification que l'utilisateur existe en base de données
     const user = await User.findByPk(decoded.id);
@@ -28,8 +23,6 @@ const auth = async (req, res, next) => {
       console.log("❌ Utilisateur introuvable en base :", decoded.id);
       return res.status(401).json({ error: "Utilisateur non authentifié." });
     }
-
-    console.log("✅ Utilisateur trouvé :", user.username);
 
     req.user = decoded;
     next();

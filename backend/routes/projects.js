@@ -2,7 +2,7 @@
 
 const express = require('express');
 const router = express.Router();
-const { getProjects, getProjectById, createProject, updateProject, deleteProject } = require('../services/projectService');
+const projectService = require('../services/projectService');
 
 const { auth } = require('../middleware/authentification');
 const { asyncWrapper } = require('../middleware/errors');
@@ -10,26 +10,16 @@ const { asyncWrapper } = require('../middleware/errors');
 
 // Route pour récupérer tous les projets
 router.get('/', asyncWrapper(async (req, res) => {
-  const projects = await getProjects();
+  const projects = await projectService.getProjects();
   res.status(200).json(projects);
 }));
 
-// Route pour récupérer un projet spécifique par son ID
-router.get('/:id', asyncWrapper(async (req, res) => {
-  const project = await getProjectById(req.params.id);
-  if (!project) {
-    return res.status(404).json({ message: 'Project not found' });
-  }
-  res.status(200).json(project);
-}));
 
 // Route pour récupérer les projets assignés à l'utilisateur connecté
-router.get('/user-projects', asyncWrapper(async (req, res) => {
-  console.log("Middleware d'auth exécuté. Utilisateur :", req.user);
+router.get('/user-projects', auth, asyncWrapper(async (req, res) => {
   try {
     const userId = req.user.id; // Récupérer l'ID de l'utilisateur connecté (via le token JWT)
-
-    const projects = await getProjectsByUser(userId); // Utilisation d'un service pour récupérer les projets liés à l'utilisateur
+    const projects = await projectService.getProjectsByUser(userId); // Récupération des projet lié à l'ID de l'utilisateur
 
     res.status(200).json(projects);
   } catch (error) {
@@ -46,13 +36,13 @@ router.post('/new', asyncWrapper(async (req, res) => {
   if (!name || !description || !startDate || !endDate || !managerId) {
     return res.status(400).json({ message: "Tous les champs obligatoires doivent être remplis" });
   }
-  const newProject = await createProject(req.body);
+  const newProject = await projectService.createProject(req.body);
   res.status(201).json(newProject);
 }));
 
 // Route pour mettre à jour un projet existant (accessible uniquement par un administrateur)
 router.put('/:id', asyncWrapper(async (req, res) => {
-  const updatedProject = await updateProject(req.params.id, req.body);
+  const updatedProject = await projectService.updateProject(req.params.id, req.body);
   if (!updatedProject) {
     console.log(`Projet non trouvé pour mise à jour: ID ${req.params.id}`); // 🔥 Debug
     return res.status(404).json({ message: 'Project not found to update' });
@@ -62,12 +52,22 @@ router.put('/:id', asyncWrapper(async (req, res) => {
 
 // Route pour supprimer un projet (accessible uniquement par un administrateur)
 router.delete('/:id', asyncWrapper(async (req, res) => {
-  const deletedProject = await deleteProject(req.params.id);
+  const deletedProject = await projectService.deleteProject(req.params.id);
   if (!deletedProject) {
     console.log(`Projet non trouvé pour suppression: ID ${req.params.id}`); // 🔥 Debug
     return res.status(404).json({ message: 'Project not found to delete' });
   }
   res.status(200).json({ message: 'Project deleted successfully' });
 }));
+
+// Route pour récupérer un projet spécifique par son ID
+router.get('/:id', asyncWrapper(async (req, res) => {
+  const project = await projectService.getProjectById(req.params.id);
+  if (!project) {
+    return res.status(404).json({ message: 'Project not found' });
+  }
+  res.status(200).json(project);
+}));
+
 
 module.exports = router;

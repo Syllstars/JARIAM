@@ -18,14 +18,14 @@ const LoginPage = () => {
 
       if (!response.ok) {
         throw new Error("Login failed");
-      } 
-      
+      }
+
+      // Extraction de la réponse en JSON pour récupérer le token
       const data = await response.json();
-      console.log("Token received:", data.token);
-      
-      localStorage.setItem("token", data.token);
-      console.log("Token envoyé après connexion :", localStorage.getItem("token"));
-      
+    
+      // Stockage du token dans le localStorage
+      localStorage.setItem('token', data.token);
+       
       window.location.href = "/dashboard"; // Redirection après connexion réussie
     } catch (error) {
       console.error("Error during login:", error);

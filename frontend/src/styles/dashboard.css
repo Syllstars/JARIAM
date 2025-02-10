@@ -52,25 +52,92 @@ body {
   background-color: #bbb;
 }
 
+.project-header {
+  font-weight: bold;
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.project-name {
+  padding: 3px;
+  border-radius: 5px;
+  background-color:#3a3a3a9f;
+}
+
+/* Styles pour les différents statuts */
+.status {
+  font-size: 14px;
+  font-weight: bold;
+  padding: 2px 5px;
+  border-radius: 5px;
+  color: white;
+  text-transform: capitalize;
+  display: inline-block;
+}
+
+/* Statut : En cours */
+.status.in-progress {
+  background-color: #f4b400; /* Jaune orangé */
+}
+
+/* Statut : Pas encore commencé */
+.status.not-started {
+  background-color: #d32f2f; /* Rouge */
+}
+
+/* Statut : Terminé */
+.status.completed {
+  background-color: #388e3c; /* Vert */
+}
+
+/* Statut : En pause */
+.status.on-hold {
+  background-color: #1976d2; /* Bleu */
+}
+
+
 
 /* Détails du projet */
 
 
 .project-details {
-  display: flex;
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 15px;
   padding: 20px;
-  background-color: #3a3a3a;
-  width: 80%;
-  height: 550px;
-  border-radius: 10px;
-  justify-content: center;
+  background-color: #333;
+  border-radius: 8px;
   align-items: center;
+  justify-content: center;
 }
 
 .select-project-message {
+  grid-column: span 2;
+  text-align: center;
   font-size: 18px;
   font-weight: bold;
-  color: white;
+  color: #bbb;
+}
+
+.project-info {
+  grid-column: span 2;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.1);
   text-align: center;
 }
 
+.project-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.project-text {
+  font-size: 16px;
+  margin: 8px 0;
+}

@@ -3,7 +3,7 @@ const sequelize = require('../db_setup'); // Import de l'instance Sequelize
 const User = require('./user'); // Import du modèle User
 const Resource = require('./resource'); // Import du modèle Resource
 
-const Project = sequelize.define('Project', {
+const Project = sequelize.define('projects', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -19,11 +19,11 @@ const Project = sequelize.define('Project', {
     allowNull: false,
     trim: true
   },
-  startDate: {
+  start_date: {
     type: DataTypes.DATE,
     allowNull: false
   },
-  endDate: {
+  end_date: {
     type: DataTypes.DATE,
     allowNull: false
   },
@@ -38,14 +38,14 @@ const Project = sequelize.define('Project', {
   priority: {
     type: DataTypes.ENUM('low', 'medium', 'high'),
     defaultValue: 'medium'
+  },
+  manager_id: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    field: "manager_id"
   }
 }, {
   timestamps: true // Active `createdAt` et `updatedAt`
 });
-
-// 🔗 Définition des relations
-Project.belongsTo(User, { as: 'manager', foreignKey: 'managerId' }); // Un projet a un seul manager
-Project.belongsToMany(User, { as: 'teamMembers', through: 'project_teamMembers' }); // Un projet peut avoir plusieurs membres d'équipe
-Project.belongsToMany(Resource, { as: 'resources', through: 'project_resources' }); // Un projet peut utiliser plusieurs ressources
 
 module.exports = Project;

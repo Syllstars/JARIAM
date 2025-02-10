@@ -9,31 +9,27 @@ const { asyncWrapper } = require('../middleware/errors');
 
 
 router.post("/login", asyncWrapper(async (req, res) => {
-  console.log("Tentative de connexion :", req.body); // 🔥 Debug
 
   const { username, password } = req.body;
-
   const user = await Users.findOne({ where: { username: username } });
-  console.log("Utilisateur trouvé :", user ? user.username : "Aucun"); // 🔥 Debug
+
   if (!user) {
     return res.status(401).json({ message: "Utilisateur non trouvé" });
   }
-
   
   const isMatch = await bcrypt.compare(password, user.hashed_password);
-  console.log("Mot de passe valide :", isMatch); // 🔥 Debug
+
   if (!isMatch) {
     return res.status(401).json({ message: "Mot de passe incorrect" });
   }
-
   
   const token = jwt.sign(
     { id: user.id, username: user.username, role: user.role },
     process.env.JWT_SECRET,
-    { expiresIn: "1h" }
+    { expiresIn: 604800 }
   );
 
-  console.log("Token généré et envoyé au client :", token);  // 🔥 Debug
+
   res.status(200).json({ token });
 }));
 
