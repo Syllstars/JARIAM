@@ -32,7 +32,6 @@
     "express-validator": "^7.2.0",
     "jariam": "file:",
     "joi": "^17.13.3",
-    "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.9.5",
     "morgan": "^1.10.0",
     "node-mocks-http": "^1.16.2",
@@ -49,6 +48,7 @@
   "devDependencies": {
     "eslint": "^9.17.0",
     "jest": "^29.7.0",
+    "jsonwebtoken": "^9.0.2",
     "node-mocks-http": "^1.16.2",
     "nodemon": "^3.1.9",
     "speakeasy": "^2.0.0",

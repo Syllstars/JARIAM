@@ -11,16 +11,17 @@ const { asyncWrapper } = require('../middleware/errors');
 router.post("/login", asyncWrapper(async (req, res) => {
 
   const { username, password } = req.body;
+
   const user = await Users.findOne({ where: { username: username } });
 
   if (!user) {
-    return res.status(401).json({ message: "Utilisateur non trouvé" });
+    return res.status(405).json({ message: "Utilisateur non trouvé" });
   }
   
   const isMatch = await bcrypt.compare(password, user.hashed_password);
-
+  
   if (!isMatch) {
-    return res.status(401).json({ message: "Mot de passe incorrect" });
+    return res.status(406).json({ message: "Mot de passe incorrect" });
   }
   
   const token = jwt.sign(

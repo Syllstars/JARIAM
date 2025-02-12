@@ -8,7 +8,7 @@ const { validateUser, validateUserUpdate } = require('../middleware/dataProcessi
 const { asyncWrapper } = require('../middleware/errors');
 
 // Route pour récupérer tous les utilisateurs (accessible par les admins uniquement)
-router.get('/', hasRole('admin'), asyncWrapper(async (req, res) => {
+router.get('/', hasRole('Admin'), asyncWrapper(async (req, res) => {
   const users = await getAllUsers();
   res.status(200).json(users);
 }));
@@ -23,7 +23,7 @@ router.get('/:id', auth, asyncWrapper(async (req, res) => {
 }));
 
 // Route pour créer un nouvel utilisateur (accessible par les admins uniquement)
-router.post('/create', hasRole('admin'), validateUser, asyncWrapper(async (req, res) => {
+router.post('/create', hasRole('Admin'), validateUser, asyncWrapper(async (req, res) => {
   const newUser = await createUser(req.body);
   res.status(201).json(newUser);
 }));
@@ -38,7 +38,7 @@ router.put('/:id', validateUserUpdate, asyncWrapper(async (req, res) => {
 }));
 
 // Route pour supprimer un utilisateur (accessible par les admins uniquement)
-router.delete('/:id', hasRole('admin'), asyncWrapper(async (req, res) => {
+router.delete('/:id', hasRole('Admin'), asyncWrapper(async (req, res) => {
   const deletedUser = await deleteUser(req.params.id);
   if (!deletedUser) {
     return res.status(404).json({ message: 'User not found' });

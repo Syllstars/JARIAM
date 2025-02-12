@@ -24,7 +24,7 @@ body {
 
 /* Conteneur principal */
 .dashboard-content {
-  margin-top: 30px;
+  margin-top: 80px;
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -32,11 +32,11 @@ body {
 
 /* Liste des projets */
 .project-list {
-  background-color: #2a2a2a;
-  max-height: 80%;
-  overflow-y: auto;
+  max-height: calc(100vh - 120px); /* Ajuste la hauteur maximale */
+  overflow-y: auto; /* Active le défilement vertical */
   padding: 10px;
   border-radius: 10px;
+  background-color: #2a2a2a;
 }
 
 .project-item {
@@ -112,6 +112,8 @@ body {
   border-radius: 8px;
   align-items: center;
   justify-content: center;
+  margin-left: 60px;
+  max-height: calc(100vh - 120px); /* Ajuste la hauteur maximale */
 }
 
 .select-project-message {
@@ -120,6 +122,17 @@ body {
   font-size: 18px;
   font-weight: bold;
   color: #bbb;
+  flex: 1;
+  display: flex;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  padding: 20px;
+  background-color: #333;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  margin-left: 60px;
+  max-height: calc(100vh - 120px);
 }
 
 .project-info {
