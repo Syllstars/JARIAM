@@ -106,7 +106,6 @@ body {
   flex: 1;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 1fr);
   gap: 15px;
   padding: 20px;
   background-color: #333;
@@ -140,4 +139,10 @@ body {
 .project-text {
   font-size: 16px;
   margin: 8px 0;
+}
+
+.user-item {
+  display: block; /* Force l'affichage en ligne séparée */
+  margin-bottom: 5px; /* Espacement entre les utilisateurs */
+  font-weight: bold; /* Met le texte en gras */
 }

@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../db_setup');
 
-const Skill = sequelize.define('Skill', {
+const Skill = sequelize.define('skill', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -23,7 +23,7 @@ const Skill = sequelize.define('Skill', {
     type: DataTypes.ENUM('technical', 'soft', 'management'),
     allowNull: false,
   },
-  isActive: {
+  is_active: {
     type: DataTypes.BOOLEAN,
     defaultValue: true,
   }

@@ -1,7 +1,7 @@
 // Importation des dépendances
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { User } = require('../models/user');
+const User= require('../models/user');
 const LogService = require('./logService');
 const { UnauthorizedError, ForbiddenError } = require('../middleware/errors');
 

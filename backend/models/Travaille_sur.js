@@ -3,7 +3,7 @@ const sequelize = require('../db_setup'); // Import de l'instance Sequelize
 const User = require('./user'); // Import du modèle User
 const Project = require('./project'); // Import du modèle Project
 
-const Travaille_sur = sequelize.define('Travaille_sur', {
+const Travaille_sur = sequelize.define('Travaille_surs', {
     ID_Users: {
       type: DataTypes.INTEGER,
       autoIncrement: true,
@@ -13,7 +13,7 @@ const Travaille_sur = sequelize.define('Travaille_sur', {
     Id_projects: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
     }
   }, {
     timestamps: true // Active `createdAt` et `updatedAt`

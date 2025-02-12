@@ -6,7 +6,6 @@ const morgan = require('morgan');
 const fs = require('fs');
 const path = require('path');
 require('dotenv').config();
-console.log("JWT_SECRET chargé :", process.env.JWT_SECRET);
 
 const { errorHandler, notFoundHandler, validationErrorHandler } = require('./middleware/errors');
 
@@ -20,6 +19,14 @@ const authRoutes = require('./routes/auth');
 const userRoutes = require('./routes/users');
 const projectRoutes = require('./routes/projects');
 const notificationRoutes = require('./routes/notifications');
+const ressourcesroute = require('./routes/resources');
+const skillsroute = require('./routes/skills');
+const stocksroute = require('./routes/stock');
+const auditsroute = require('./routes/audit');
+const logsroute = require('./routes/logs');
+const securityroutes = require('./routes/security');
+const taskroutes = require('./routes/tasks');
+
 
 // Base de données (Sequelize)
 const sequelize = require('./db_setup');
@@ -65,6 +72,13 @@ app.use('', authRoutes);
 app.use('/api/home', projectRoutes);
 app.use('/api/users', userRoutes);
 app.use('/notifications', notificationRoutes);
+app.use('/api/ressources', ressourcesroute);
+app.use('/api/skill', skillsroute);
+app.use('/api/stock', stocksroute);
+app.use('/admin/audit', auditsroute);
+app.use('/admin/logs', logsroute);
+app.use('/admin/security', securityroutes);
+app.use('/api/tasks', taskroutes);
 
 // --- Middleware de gestion des erreurs ---
 

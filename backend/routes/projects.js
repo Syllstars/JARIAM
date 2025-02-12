@@ -28,6 +28,36 @@ router.get('/user-projects', auth, asyncWrapper(async (req, res) => {
   }
 }));
 
+// Route pour récupérer tous les utilisateurs assignés aux projets d'un utilisateur donné
+router.get('/user-projects/:userId/users', auth, asyncWrapper(async (req, res) => {
+  try {
+    const userId = req.params.userId;
+
+    // Récupérer les projets liés à cet utilisateur
+    const projects = await projectService.getProjectsByUser(userId);
+
+    if (!projects.length) {
+      return res.status(404).json({ message: "Aucun projet trouvé pour cet utilisateur." });
+    }
+
+    // Récupérer les utilisateurs pour chaque projet
+    const projectsWithUsers = await Promise.all(projects.map(async (project) => {
+      const users = await projectService.getUsersByProject(project.id); // Obtenir les users d'un projet
+      return {
+        projectId: project.id,
+        projectName: project.name,
+        users
+      };
+    }));
+
+    res.status(200).json(projectsWithUsers);
+  } catch (error) {
+    console.error("Erreur lors de la récupération des utilisateurs des projets :", error);
+    res.status(500).json({ message: "Erreur interne du serveur" });
+  }
+}));
+
+
 
 // Route pour créer un nouveau projet (accessible uniquement par un administrateur)
 router.post('/new', asyncWrapper(async (req, res) => {

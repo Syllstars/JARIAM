@@ -53,6 +53,31 @@ class ProjectService {
     }
 
     /**
+     * Récupère tous les utilisateurs assignés à un projet donné.
+     * @param {number} projectId - ID du projet.
+     * @returns {Promise<Array<Object>>} - Liste des utilisateurs associés à ce projet.
+     */
+    static async getUsersByProject(projectId) {
+        try {
+            const users_relation = await Travaille_sur.findAll({
+                where: { Id_projects: projectId },
+            });
+
+            const userIds = users_relation.map(relation => relation.ID_Users);
+            const users = await User.findAll({
+                where: { id: { [Op.in]: userIds } },
+                attributes: ["id", "username", "email", "role"],
+            });
+
+            return users.map(user => user.toJSON());
+        } catch (error) {
+            LogService.error("Erreur lors de la récupération des utilisateurs du projet", error);
+            throw error;
+        }
+    }
+
+
+    /**
      * Met à jour un projet existant.
      * @param {number} projectId - ID du projet à mettre à jour.
      * @param {Object} updateData - Données à mettre à jour.
