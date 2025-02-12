@@ -10,7 +10,7 @@ version](https://img.shields.io/badge/PostgreSQL-latest-blue.svg)](https://www.p
 [![License :
 MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-**JARIAM** est une application complète de gestion et de visualisation de données industrielles. Elle permet de centraliser, analyser et afficher des informations en temps réel, avec une interface intuitive et performante.
+**JARIAM** est une application complète de gestion de projets qui permet d'attribuer automatiquement des ressources humaines en fonction de leurs compétences et de leurs disponibilité. En plus de la gestion des ressources humaines, l'application inclut un système de gestion des stocks pour suivre les matériels et ressources nécessaires aux projets.
 
 ---
 
@@ -29,11 +29,19 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.or
 **JARIAM** est une application web axée sur la gestion intelligente des projets. Elle permet aux utilisateurs de centraliser, organiser et suivre les informations clés d'un projet, avec une interface intuitive et dse outils personnalisables.
 
 ## **Fonctionnalités**
-- **Gestion des utilisateurs :** Créer, modifier et supprimez des utilisateurs avec des rôles spécifiques.
-- **Visualisation des données :** Affichage dynamique des données collectées depuis des sources externes.
-- **Authentification sécurisée :** Login avec mot de passe hashés.
-- **API REST :** Exposition des données via une API REST pour une intégration facile avec d'autres outils
-- Stockage de données :** Base de données relationnelle PostgreSQL
+### 1. Gestion des Projects
+- **Création et gestion de projets** : Créez des projets avec des informations telles que la description, les dates de début et de fin, et le status du projet.
+- **Suivi de l'avancement** : Suivez l'avancement de chaque projet avec une vue d'ensemble des tâches terminées, en cours et à venir.
+- **Assignation de tâches** : Attribuez des tâches spécifiques aux projets et suivez leur progression.
+
+### 2. Attribution des Ressources Humaines
+- **Profils des utilisateurs** : Chaque utilisateurs a un profil détaillant ses compétences, ses disponibilités, et son historique de projet.
+- **Attribution automatique des ressources** : L'application attribue des ressources aux projets en fonction des compétences des utilisateurs et de leur disponibilité.
+
+### 3. Gestion des Stocks
+- **Suivi des stocks** : Gérez l'inventaire des matériels et équipements nécessaires aux projets.
+- **Alertes de réapprovisionnement** : Recevez des notifications lorsque le stock atteint un seuil critique.
+- **Gestion des entrées et sorties** : Suivez l'utilisation des stocks pour chaque projet et assurez-vous que les besoins sont couverts en temps réel.
 
 ## **Technologies utilisées**
 - **Backend :** Node.JS (Express.js)
@@ -64,6 +72,12 @@ MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.or
    DB_USER=postgres
    DB_PASSWORD=<your password>
    DB_NAME=jariam_db
+
+   SMTP_HOST=smtp.gmail.com
+   SMTP_PORT=465
+   SMTP_USER=<gmail address>
+   SMTP_PASSWORD=<password>
+   EMAIL_SECURE=true
    ```
 7. Démarrer l'application
    ```bash
@@ -80,18 +94,31 @@ L'application sera accessible à l'adresse suivante : http://localhost:3000
 ## **Structure du Projet**
 ```plaintext
 JARIAM/
-├── src/                # Code source principal
-│   ├── controllers/    # Logique métier
-│   ├── routes/         # Définition des routes API
-│   ├── models/         # Modèles de données Sequelize
-│   ├── services/       # Services réutilisables (authentifications, etc.)
-├── public/             # Fichiers statiques pour le frontend
-│   ├── js/
-│   ├── css/
-│   ├── images/
-├── db_setup/           # Fichier d'initialisation de la base de données
-├── package.json
+├── frontend/               # Code frontend
+│   ├── components/         # Composants utilisé par les pages Web
+│   ├── pages/              # Gestion des Pages Web
+│   ├── public/      
+│   ├── package.json    
+│   ├── src/     
+│   │   ├── components/         
+│   │   ├── App.js          # Configurer les routes
+│   │   ├── index.js        # Point d'entrée de l'application     
+├── backend/                # Code backend
+│   ├── middleware/         # Logique métier
+│   ├── models/             # Modèles de données Sequelize
+│   ├── routes/             # Définition des routes API
+│   ├── services/           # Services réutilisables (authentifications, etc.)
+│   ├── utils/              # Utilitaire pour gérer les appels API
+│   ├── db_setup.js         # Fichier d'initialisation de la base de données
+│   ├── package.json
+│   ├── server.js
+│   ├── .env
+│   ├── db_setup.js
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── LICENSE
 ├── README.md
+├── SECURITY.md
 ```
 
 ---
@@ -114,8 +141,8 @@ JARIAM/
 
 ## **Roadmap**
 ### **Version prévues :**
-- v1.0 : Mise en place des fonctionnalité de base (utilisateurs, visualisation des données, backend et frontend).
-- v2.0 : Intégration des API externes et amélioration des performances.
+- v1.0.0 : Mise en place des fonctionnalité de base (utilisateurs, visualisation des données, backend et frontend).
+- v2.0.0 : Intégration des API externes et amélioration des performances.
 
 ## **License**
 Ce projet est sous licence MIT. Consultez le fichier [LICENSE](LICENSE) pour plus de détails.

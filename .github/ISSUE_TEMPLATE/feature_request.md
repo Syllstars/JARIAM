@@ -1,31 +1,42 @@
 ---
-name: Feature Request
-about : Proposé une nouvelle fonctionnalité
-titre : "[FEATURE] Description de la fonctionnalité"
-label : enhancement
+name: Demande de fonctionnalité
+about: Proposez une nouvelle idée ou une amélioration pour le projet
+title: "[FEATURE] Titre clair et concis de la fonctionnalité"
+labels: enhancement
 assignees: ''
----
-
-**Problème actuel**
-
-Expliquer brièvement ce qui ne fonctionne pas actuellement
 
 ---
 
-**Description de la solution souhaitée**
+# Description de la fonctionnalité
 
-Une description claire et concise de ce que vous souhaitez.
-
----
-
-**Alternative**
-
-Décrivez les solutions alternatives que vous avez envisagées.
+Décrivez clairement la nouvelle fonctionnalité ou l'amélioration que vous proposez.
 
 ---
 
-**Information supplémentaires**
+# Problème actuel
 
-Ajouter toutes information utile pour mieux comprendre votre demande.
+Expliquez brièvement quel problème cette fonctionnalité permettrait de résoudre.
 
 ---
+
+# Solution proposée
+
+Décrivez comment vous imaginez que la fonctionnalité devrait fonctionner.
+
+---
+
+# Alternatives envisagées
+
+Listez ici les solutions alternatives ou de contournement que vous avez envisagées (le cas échéant).
+
+---
+
+# Impact attendu
+
+Expliquez en quoi cette fonctionnalité bénéficierait aux utilisateurs ou au projet.
+
+---
+
+# Informations supplémentaires
+
+Ajoutez tout contexte supplémentaire, des captures d'écran, ou des liens vers des ressources pertinentes qui pourraient être utiles.
