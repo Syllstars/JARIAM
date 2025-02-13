@@ -11,6 +11,27 @@ const Dashboard = () => {
   const [skills, setSkills] = useState({});
   const [projectUsers, setProjectUsers] = useState({});
 
+  const handleLogout = async () => {
+    try {
+      // Appel de la route logout côté backend
+      const response = await fetch("http://localhost:3001/logout", { method: "POST" });
+      console.log(response);
+  
+      if (!response.ok) {
+        throw new Error("Erreur lors de la déconnexion");
+      }
+  
+      // Supprime le token du localStorage après confirmation
+      localStorage.removeItem("token");
+  
+      // Redirige l'utilisateur vers la page d'accueil
+      window.location.href = "/";
+    } catch (error) {
+      console.error("Erreur lors de la déconnexion :", error);
+    }
+  };
+  
+  
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -136,9 +157,16 @@ const Dashboard = () => {
       <nav className="navbar">
         <h1 className="logo">JARIAM</h1>
         <div className="nav-links">
-          <button className="nav-button">Logout</button>
+          {/* Affichage des informations utilisateur */}
+          {user && (
+            <div className="user-info">
+              <span>{user.first_name} </span>
+            </div>
+          )}
+          <button className="nav-button" onClick={handleLogout}>Logout</button>
         </div>
       </nav>
+
 
       <div className="dashboard-content">
         <div className="project-list">
@@ -193,8 +221,8 @@ const Dashboard = () => {
               {skills[selectedProject?.id] && skills[selectedProject.id].length > 0 ? (
                 <table>
                   <tbody>
-                    { skills[selectedProject.id].map(skill => (
-                      <tr key={skill.id}  className="skill-item">
+                    {skills[selectedProject.id].map(skill => (
+                      <tr key={skill.id} className="skill-item">
                         <td>{skill.name}</td>
                       </tr>
                     ))}

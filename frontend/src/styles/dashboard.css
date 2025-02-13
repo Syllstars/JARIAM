@@ -22,6 +22,24 @@ body {
   height: 60px;
 }
 
+.user-info {
+  padding: 5px;
+  margin-right: 20px;
+  font-size: 14px;
+  color: #2a2a2a;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: flex-end;
+  background-color: #3CC2D2;
+  border-radius: 5px;
+  border: solid;
+  font-size: large;
+  font-weight: bold;
+  border-color: #171F69;
+}
+
+
 /* Conteneur principal */
 .dashboard-content {
   margin-top: 80px;
