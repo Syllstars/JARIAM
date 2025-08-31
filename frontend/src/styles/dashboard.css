@@ -1,7 +1,48 @@
+/* Dashboard.css */
+
+/* Déclaration des variables globales */
+:root {
+  /* Couleurs générales */
+  --color-background-body: #1a1a1a;
+  --color-navbar: #d1d1d1;
+  --color-user-info-bg: #3CC2D2;
+  --color-user-info-border: #171F69;
+  --color-project-list-bg: #2a2a2a;
+  --color-project-item-bg: #ddd;
+  --color-project-item-hover: #bbb;
+  --color-project-name-bg: #3a3a3a9f;
+  --color-project-details-bg: #333;
+  --color-project-info-bg: rgba(255, 255, 255, 0.1);
+  --color-text-default: #2a2a2a;
+  --color-text-secondary: #bbb;
+
+  /* Statuts */
+  --color-status-in-progress: #f4b400;
+  --color-status-not-started: #d32f2f;
+  --color-status-completed: #388e3c;
+  --color-status-on-hold: #1976d2;
+
+  /* Tailles et polices */
+  --font-family-base: 'Plus Jakarta Sans', sans-serif;
+  --font-size-small: 14px;
+  --font-size-large: 18px;
+  --font-size-project-title: 24px;
+
+  /* Espacements et dimensions */
+  --navbar-height: 60px;
+  --dashboard-margin-top: 80px;
+  --project-item-padding: 10px;
+  --project-details-padding: 20px;
+  --project-list-padding: 10px;
+  --border-radius-small: 5px;
+  --border-radius-medium: 8px;
+  --border-radius-large: 10px;
+}
+
 /* Styles du Dashboard */
 body {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  background-color: #1a1a1a;
+  font-family: var(--font-family-base);
+  background-color: var(--color-background-body);
   margin: 0;
   padding: 0;
   height: 100vh;
@@ -12,37 +53,37 @@ body {
 /* Barre de navigation */
 .navbar {
   width: 100%;
-  background-color: #d1d1d1;
+  background-color: var(--color-navbar);
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0px 40px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
   box-sizing: border-box;
-  height: 60px;
+  height: var(--navbar-height);
 }
 
 .user-info {
   padding: 5px;
   margin-right: 20px;
-  font-size: 14px;
-  color: #2a2a2a;
+  font-size: var(--font-size-large);
+  color: var(--color-text-default);
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: flex-end;
-  background-color: #3CC2D2;
-  border-radius: 5px;
+  background-color: var(--color-user-info-bg);
+  border-radius: var(--border-radius-small);
   border: solid;
   font-size: large;
   font-weight: bold;
-  border-color: #171F69;
+  border-color: var(--color-user-info-border);
 }
 
 
 /* Conteneur principal */
 .dashboard-content {
-  margin-top: 80px;
+  margin-top: var(--dashboard-margin-top);
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -52,27 +93,32 @@ body {
 .project-list {
   max-height: calc(100vh - 120px); /* Ajuste la hauteur maximale */
   overflow-y: auto; /* Active le défilement vertical */
-  padding: 10px;
-  border-radius: 10px;
-  background-color: #2a2a2a;
+  padding: var(--project-list-padding);
+  border-radius: var(--border-radius-large);
+  background-color: var(--color-project-list-bg);
 }
 
 .project-item {
-  background-color: #ddd;
-  padding: 10px;
-  border-radius: 10px;
+  background-color: var(--color-project-item-bg);
+  padding: var(--project-item-padding);
+  border-radius: var(--border-radius-large);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
   cursor: pointer;
-  transition: 0.3s;
+  transition: transform 0.2s ease;
+}
+
+.project-item:hover {
+  transform: translateY(-2px);
 }
 
 .project-item:hover,
 .project-item.active {
-  background-color: #bbb;
+  background-color: var(--color-project-item-hover);
 }
 
 .project-header {
   font-weight: bold;
-  font-size: 14px;
+  font-size: var(--font-size-small);
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -80,54 +126,42 @@ body {
 
 .project-name {
   padding: 3px;
-  border-radius: 5px;
-  background-color:#3a3a3a9f;
+  border-radius: var(--border-radius-small);
+  background-color: var(--color-project-name-bg);
 }
 
 /* Styles pour les différents statuts */
 .status {
-  font-size: 14px;
+  font-size: var(--font-size-small);
   font-weight: bold;
   padding: 2px 5px;
-  border-radius: 5px;
+  border-radius: var(--border-radius-small);
   color: white;
   text-transform: capitalize;
   display: inline-block;
 }
 
 /* Statut : En cours */
-.status.in-progress {
-  background-color: #f4b400; /* Jaune orangé */
-}
+.status.in-progress { background-color: var(--color-status-in-progress); }
 
 /* Statut : Pas encore commencé */
-.status.not-started {
-  background-color: #d32f2f; /* Rouge */
-}
+.status.not-started { background-color: var(--color-status-not-started); }
 
 /* Statut : Terminé */
-.status.completed {
-  background-color: #388e3c; /* Vert */
-}
+.status.completed { background-color: var(--color-status-completed); }
 
 /* Statut : En pause */
-.status.on-hold {
-  background-color: #1976d2; /* Bleu */
-}
-
-
+.status.on-hold { background-color: var(--color-status-on-hold); }
 
 /* Détails du projet */
-
-
 .project-details {
   flex: 1;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 15px;
-  padding: 20px;
-  background-color: #333;
-  border-radius: 8px;
+  padding: var(--project-details-padding);
+  background-color: var(--color-project-details-bg);
+  border-radius: var(--border-radius-medium);
   align-items: center;
   justify-content: center;
   margin-left: 60px;
@@ -137,16 +171,16 @@ body {
 .select-project-message {
   grid-column: span 2;
   text-align: center;
-  font-size: 18px;
+  font-size: var(--font-size-large);
   font-weight: bold;
-  color: #bbb;
+  color: var(--color-text-secondary);
   flex: 1;
   display: flex;
   grid-template-columns: repeat(2, 1fr);
   gap: 15px;
-  padding: 20px;
-  background-color: #333;
-  border-radius: 8px;
+  padding: var(--project-details-padding);
+  background-color: var(--color-project-details-bg);
+  border-radius: var(--border-radius-medium);
   align-items: center;
   justify-content: center;
   margin-left: 60px;
@@ -155,25 +189,46 @@ body {
 
 .project-info {
   grid-column: span 2;
-  padding: 20px;
-  border-radius: 8px;
-  background-color: rgba(255, 255, 255, 0.1);
+  padding: var(--project-details-padding);
+  border-radius: var(--border-radius-medium);
+  background-color: var(--color-project-info-bg);
   text-align: center;
 }
 
 .project-title {
-  font-size: 24px;
+  font-size: var(--font-size-project-title);
   font-weight: bold;
   margin-bottom: 10px;
+  letter-spacing: 0.5px;
 }
 
 .project-text {
   font-size: 16px;
   margin: 8px 0;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
 }
 
 .user-item {
   display: block; /* Force l'affichage en ligne séparée */
   margin-bottom: 5px; /* Espacement entre les utilisateurs */
   font-weight: bold; /* Met le texte en gras */
+}
+
+
+@media (max-width: 768px) {
+  .dashboard-content {
+    flex-direction: column;
+    margin-top: 60px;
+  }
+
+  .project-details {
+    grid-template-columns: 1fr;
+    margin-left: 0;
+  }
+
+  .select-project-message {
+    grid-template-columns: 1fr;
+    margin-left: 0;
+  }
 }

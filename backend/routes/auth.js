@@ -17,13 +17,13 @@ router.post("/login", asyncWrapper(async (req, res) => {
   if (!user) {
     return res.status(405).json({ message: "Utilisateur non trouvé" });
   }
-  
+
   const isMatch = await bcrypt.compare(password, user.hashed_password);
-  
+
   if (!isMatch) {
     return res.status(406).json({ message: "Mot de passe incorrect" });
   }
-  
+
   const token = jwt.sign(
     { id: user.id, username: user.username, role: user.role },
     process.env.JWT_SECRET,
@@ -44,7 +44,7 @@ router.post('/logout', asyncWrapper(async (req, res) => {
 router.post('/refresh', asyncWrapper(async (req, res) => {
   try {
     const { refreshToken: oldRefreshToken } = req.body;
-    
+
     if (!oldRefreshToken) {
       return res.status(400).json({ message: "Refresh token requis" });
     }

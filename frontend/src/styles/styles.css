@@ -1,127 +1,170 @@
 /* styles.css */
 
+/* Déclaration des variables globales */
+:root {
+  /* Couleurs générales */
+  --color-background-body: #1a1a1a;
+  --color-navbar: #d1d1d1;
+  --color-logo: #171F69;
+  --color-nav-link: #1c1c1c;
+  --color-nav-button-bg: #171F69;
+  --color-nav-button-text: #ffffff;
+  --color-login-box-bg: #5a5a5a;
+  --color-login-title: #ffffff;
+  --color-input-field-bg: #f0f0f0;
+  --color-button-bg: #171F69;
+  --color-button-hover-bg: #0E1447;
+  --color-text-default: #1c1c1c;
+
+  /* Tailles et polices */
+  --font-family-base: 'Plus Jakarta Sans', sans-serif;
+  --font-size-logo: 32px;
+  --font-size-login-title: 22px;
+  --font-size-text: 15px;
+  --font-weight-normal: 500;
+  --font-weight-bold: bolder;
+  --font-weight-semi-bold: 600;
+
+  /* Espacements et dimensions */
+  --navbar-padding: 0px 40px;
+  --navbar-height: auto;
+  --nav-links-gap: 15px;
+  --nav-button-padding: 8px 20px;
+  --nav-button-border-radius: 5px;
+  --login-box-padding: 40px;
+  --login-box-border-radius: 20px;
+  --login-box-width: 350px;
+  --input-field-padding: 12px;
+  --input-field-width: 90%;
+  --input-field-margin-bottom: 15px;
+  --button-padding: 12px;
+  --button-width: 90%;
+}
+
 /* Styles généraux */
 body {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    background-color: #a0a0a0;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    overflow: hidden; /* Supprime les barres de défilement */
-  }
-  
-  /* Barre de navigation */
-  .navbar {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    background-color: #d1d1d1;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0px 40px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-    box-sizing: border-box;
-  }
-  
-  .logo {
-    font-size: 32px;
-    font-weight: bold;
-    color: #171F69;
-    margin: 15px;
-  }
-  
-  .nav-links {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-  }
-  
-  .nav-links a {
-    text-decoration: none;
-    color: #1c1c1c;
-    font-weight: 500;
-    font-weight: bolder;
-  }
-  
-  .nav-button {
-    background-color: #171F69;
-    color: white;
-    padding: 8px 20px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    white-space: nowrap; /* Évite la coupure du texte */
-    min-width: 80px;
-  }
-  
-  /* Conteneur principal de connexion */
-  .login-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    width: 100vw;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
-  
-  .login-box {
-    background-color: #5a5a5a;
-    padding: 40px;
-    border-radius: 20px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-    width: 350px;
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .login-title {
-    font-size: 22px;
-    font-weight: bold;
-    color: white;
-    margin-bottom: 20px;
-  }
-  
-  p {
-    font-family: 'Plus Jakarta Sans', sans-serif;
-    font-size: 15px;
-    font-weight: 600;
-    color: #1c1c1c;
-  }
-  
-  .input-field {
-    width: 90%;
-    padding: 12px;
-    margin-bottom: 15px;
-    border: none;
-    border-radius: 5px;
-    background-color: #f0f0f0;
-    text-align: center;
-  }
-  
-  .button {
-    width: 90%;
-    padding: 12px;
-    background-color: #171F69;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    text-align: center;
-    font-weight: bolder;
-  }
-  
-  .button:hover {
-    background-color: #0E1447;
-  }
+  font-family: var(--font-family-base);
+  background-color: var(--color-background-body);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  /* Supprime les barres de défilement */
+}
 
-  
+/* Barre de navigation */
+.navbar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: var(--color-navbar);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--navbar-padding);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+}
+
+.logo {
+  font-size: var(--font-size-logo);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-logo);
+  margin: 15px;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: var(--nav-links-gap);
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--color-nav-link);
+  font-weight: 500;
+  font-weight: var(--font-weight-bold);
+}
+
+.nav-button {
+  background-color: var(--color-nav-button-bg);
+  color: var(--color-nav-button-text);
+  padding: var(--nav-button-padding);
+  border-radius: var(--nav-button-border-radius);
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  /* Évite la coupure du texte */
+  min-width: 80px;
+}
+
+/* Conteneur principal de connexion */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.login-box {
+  background-color: var(--color-login-box-bg);
+  padding: var(--login-box-padding);
+  border-radius: var(--login-box-border-radius);
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+  width: var(--login-box-width);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.login-title {
+  font-size: var(--font-size-login-title);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-login-title);
+  margin-bottom: 20px;
+}
+
+p {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-text);
+  font-weight: var(--font-weight-semi-bold);
+  color: var(--color-text-default);
+}
+
+.input-field {
+  width: var(--input-field-width);
+  padding: var(--input-field-padding);
+  margin-bottom: var(--input-field-margin-bottom);
+  border: none;
+  border-radius: var(--nav-button-border-radius);
+  background-color: var(--color-input-field-bg);
+  text-align: center;
+}
+
+.button {
+  width: var(--button-width);
+  padding: var(--button-padding);
+  background-color: var(--color-button-bg);
+  color: var(--color-nav-button-text);
+  border: none;
+  border-radius: var(--nav-button-border-radius);
+  cursor: pointer;
+  text-align: center;
+  font-weight: var(--font-weight-bold);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.button:hover {
+  background-color: var(--color-button-hover-bg);
+  transform: scale(1.05);
+}

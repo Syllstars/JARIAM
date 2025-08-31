@@ -90,7 +90,7 @@ app.use(errorHandler);
 sequelize.authenticate()
   .then(() => {
     console.log('Connection to the database has been established successfully.');
-    
+
     // Synchronisation Sequelize pour assurer que la base est à jour
     return sequelize.sync();
   })
