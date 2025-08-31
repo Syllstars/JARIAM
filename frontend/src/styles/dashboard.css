@@ -215,6 +215,14 @@ body {
   font-weight: bold; /* Met le texte en gras */
 }
 
+.sidebar {
+  transition: transform 0.3s ease;
+}
+
+.sidebar.closed {
+  transform: translateX(-100%);
+}
+
 
 @media (max-width: 768px) {
   .dashboard-content {

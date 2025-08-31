@@ -3,6 +3,8 @@ import { jwtDecode } from "jwt-decode";
 
 import '../styles/dashboard.css';
 
+import Navbar from "../components/Navbar";
+
 const Dashboard = () => {
   const [projects, setProjects] = useState([]);
   const [selectedProject, setSelectedProject] = useState(null);
@@ -10,28 +12,31 @@ const Dashboard = () => {
   const [tasks, setTasks] = useState({});
   const [skills, setSkills] = useState({});
   const [projectUsers, setProjectUsers] = useState({});
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+
 
   const handleLogout = async () => {
     try {
       // Appel de la route logout côté backend
       const response = await fetch("http://localhost:3001/logout", { method: "POST" });
       console.log(response);
-  
+
       if (!response.ok) {
         throw new Error("Erreur lors de la déconnexion");
       }
-  
+
       // Supprime le token du localStorage après confirmation
       localStorage.removeItem("token");
-  
+
       // Redirige l'utilisateur vers la page d'accueil
       window.location.href = "/";
     } catch (error) {
       console.error("Erreur lors de la déconnexion :", error);
     }
   };
-  
-  
+
+
   useEffect(() => {
     const token = localStorage.getItem("token");
 
@@ -153,20 +158,9 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard-container">
-      {/* Barre de navigation */}
-      <nav className="navbar">
-        <h1 className="logo">JARIAM</h1>
-        <div className="nav-links">
-          {/* Affichage des informations utilisateur */}
-          {user && (
-            <div className="user-info">
-              <span>{user.first_name} </span>
-            </div>
-          )}
-          <button className="nav-button" onClick={handleLogout}>Logout</button>
-        </div>
-      </nav>
 
+      {/* Barre de navigation */}
+      <Navbar user={user} onLogout={handleLogout} onToggleSidebar={toggleSidebar} />
 
       <div className="dashboard-content">
         <div className="project-list">
